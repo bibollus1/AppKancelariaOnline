@@ -1,0 +1,6 @@
+http://expressjs.com/en/api.html
+http://mongoosejs.com/docs/guide.html
+
+// Heroku i Google
+Dodanie we wczesnej fazie do heroku jest potrzebne,
+żeby móc autoryzować logowanie z google, ponieważ to wymaga linka do domeny.

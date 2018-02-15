@@ -1,0 +1,15 @@
+{
+  "name": "appkancelariaonline",
+  "version": "1.0.0",
+  "description": "Aplikacja internetowa dla kancelarii radcow prawnych.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Krzysztof Bibik 23621",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongoose": "^5.0.5"
+  }
+}
