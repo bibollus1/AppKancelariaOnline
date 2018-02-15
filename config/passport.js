@@ -1,6 +1,9 @@
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
 const mongoose = require('mongoose');
 const keys = require('./keys');
+// Load user model
+const User = mongoose.model('users');
+
 
 // Defining strategy
 module.exports = function (passport){
@@ -11,8 +14,36 @@ module.exports = function (passport){
       callbackURL:'/auth/google/callback',
       proxy: true // For heroku bug
     }, (accessToken, refreshToken, profile, done)=>{
-      console.log(accessToken);
-      console.log(profile);
+      // console.log(accessToken);
+      // console.log(profile);
+
+      const image = profile.photos[0].value.substring(0,
+        profile.photos[0].value.indexOf('?'));
+        console.log(image);
+
+        const newUser = {
+          googleID: profile.id,
+          firstName: profile.name.givenName,
+          lastName: profile.name.familyName,
+          email: profile.emails[0].value,
+          image: image
+        }
+        //Check for existing user
+        User.findOne({
+          googleID: profile.id
+        }).then(user=>{
+          if(user){
+            // Return user
+            // If there is user then return it
+            done(null, user);
+          } else {
+            // Create user
+            // If there is no user, create it and then return
+            new User(newUser)
+              .save()
+              .then(user=>done(null, user))
+          }
+        });
     })
   )
 }
