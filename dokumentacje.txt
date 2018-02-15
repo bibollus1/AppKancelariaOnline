@@ -4,6 +4,8 @@ https://www.npmjs.com/package/passport-google-oauth2
 https://github.com/jaredhanson/passport-google-oauth2
 https://mlab.com/databases/storybooks-dev#users
 https://console.cloud.google.com/getting-started?creatingProject=true
+http://www.passportjs.org/docs/
+https://expressjs.com/en/guide/routing.html
 
 
 
@@ -14,5 +16,3 @@ Google oauth to strategia passport do logowania.
 Credentials:
 Here is your client ID
 961284861007-qmdi3hmuuav4omrg8arquecggjft81qs.apps.googleusercontent.com
-Here is your client secret
-UNPX6hXomm3ZU-hzdRtrSBX1
