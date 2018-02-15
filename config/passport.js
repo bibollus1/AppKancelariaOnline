@@ -7,7 +7,7 @@ module.exports = function (passport){
   passport.use(
     new GoogleStrategy({
       clientID: keys.googleClientID,
-      clientSercret: keys.googleClientSercret,
+      clientSecret: keys.googleClientSecret,
       callbackURL:'/auth/google/callback',
       proxy: true // For heroku bug
     }, (accessToken, refreshToken, profile, done)=>{
