@@ -4,11 +4,12 @@ const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
 const keys = require('./keys');
 const bcrypt = require('bcryptjs');
+
 // Load user model
 const User = mongoose.model('users');
 
 
-// Defining google strategy
+// Defining local strategy
 module.exports = function(passport) {
   passport.use(new LocalStrategy({
     usernameField: 'email'
@@ -19,7 +20,7 @@ module.exports = function(passport) {
     }).then(user => {
       if (!user) {
         return done(null, false, {
-          message: 'No user found'
+          message: 'Nie znaleziono takiego użytkownika'
         });
       }
       // Match Password
@@ -29,13 +30,14 @@ module.exports = function(passport) {
           return done(null, user)
         } else {
           return done(null, false, {
-            message: 'Password incorrect'
+            message: 'Nieprawidłowe hasło'
           });
         }
       })
     })
   })),
 
+// Defining google strategy
   passport.use(
     new GoogleStrategy({
       clientID: keys.googleClientID,

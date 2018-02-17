@@ -1,4 +1,46 @@
-.logo{
-  widht:130px;
+body {
+    background-color: #222222;
+}
+
+a {
+  font-family: "Times New Roman"
+}
+
+.container-fluid {
+     height: 800px;
+     padding: 0px;
+     background: url('https://image.ibb.co/iTG796/law_office2.jpg')no-repeat center top scroll;
+     background-size: 100% auto;
+     padding-bottom: 90%;
+     position: relative;
+     background-repeat:no-repeat;
+     padding: 0px;
+
+}
+
+.body-handler{
+  padding: 20px;
+}
+
+body {
+    background-color: #222222;
+}
+
+.body-text {
+  font-family: "Times New Roman";
+  color: #DCDCDC;
+  text-align: center;
+  padding-top: 100px;
+}
+
+.test-text {
+  font-family: "Times New Roman";
+  color: #DCDCDC;
+}
+
+.messages {
+  width: 400px;
+  position: relative;
   margin: auto;
+  padding: 10px;
 }

@@ -54,7 +54,7 @@ router.post('/register', (req,res)=>{
     User.findOne({email: req.body.email})
       .then(user =>{
         if(user){
-          //req.flash('error_msg', 'Email already registered');
+          req.flash('error_msg', 'Adres email już jest zarejestrowany!');
           res.redirect('/users/register');
         } else {
           const newUser = new User ({
@@ -70,7 +70,7 @@ router.post('/register', (req,res)=>{
               newUser.password = hash;
               newUser.save()
                 .then(user =>{
-                  //req.flash('success_msg', 'You are now registered and can login!')
+                  req.flash('success_msg', 'Jesteś zarejestrowany i możesz się zalogować!')
                   res.redirect('/users/login');
                 })
                 .catch(err=>{
@@ -86,9 +86,9 @@ router.post('/register', (req,res)=>{
 });
 
 // Logout user
-router.get('/logout', (req,res)=>{
-  req.logout();
-  req.flash('success_msg', 'You are loggoed out!');
-  res.redirect('/users/login');
-});
+// router.get('/logout', (req,res)=>{
+//   req.logout();
+//   req.flash('success_msg', 'You are loggoed out!');
+//   res.redirect('/users/login');
+// });
 module.exports = router;

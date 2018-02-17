@@ -1,6 +1,8 @@
 // Libraries and NPM modules
 const express = require('express');
+const path = require('path');
 const exphbs = require('express-handlebars');
+const flash = require('connect-flash');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -35,6 +37,9 @@ mongoose.connect(keys.mongoURI)
 // Initialize app
 const app = express();
 
+//Static folder
+app.use(express.static(path.join(__dirname, 'public'))); // sets public folder to express static folder
+
 // Body parser
 app.use(bodyParser.json()); // converting user input into JSON
 app.use(bodyParser.urlencoded({extended: true}));
@@ -46,13 +51,16 @@ app.engine('handlebars',exphbs({
 }));
 app.set('view engine', 'handlebars');
 
-//
+// Express session
 app.use(cookieParser());
 app.use(session({
   secret: 'secret',
   resave: false,
   saveUninitialized: false
 }));
+
+// Flash for messages
+app.use(flash());
 
 
 // Passport Middleware
@@ -61,6 +69,14 @@ app.use(passport.session());
 
 // Set Global variables
 app.use((req, res, next)=>{
+  res.locals.user = req.user || null;
+  next();
+});
+
+app.use((req, res, next)=>{
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
   res.locals.user = req.user || null;
   next();
 });
