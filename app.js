@@ -3,6 +3,7 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
 
@@ -16,6 +17,9 @@ require('./config/passport')(passport);
 // Load Routes
 const auth = require('./routes/auth');
 const index = require('./routes/index');
+const users = require('./routes/users');
+
+
 
 // Load Keys
 const keys = require('./config/keys');
@@ -30,6 +34,10 @@ mongoose.connect(keys.mongoURI)
 
 // Initialize app
 const app = express();
+
+// Body parser
+app.use(bodyParser.json()); // converting user input into JSON
+app.use(bodyParser.urlencoded({extended: true}));
 
 // Handlebars Middleware
 
@@ -60,6 +68,7 @@ app.use((req, res, next)=>{
 // Use routes
 app.use('/auth', auth);
 app.use('/', index);
+app.use('/users', users);
 
 
 

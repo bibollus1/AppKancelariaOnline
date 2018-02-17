@@ -9,6 +9,8 @@ router.get('/google', passport.authenticate('google', {
 }));
 
 
+
+
 router.get('/google/callback',
   passport.authenticate('google', {
     failureRedirect: '/'
@@ -31,4 +33,20 @@ router.get('/logout', (req, res) => {
 });
 
 
+
 module.exports = router;
+
+// router.get('/facebook', passport.authenticate('facebook', {
+//   scope: ['profile', 'email']
+// }));
+// router.get('/facebook',
+//   passport.authenticate('facebook'));
+//
+// router.get('/facebook/callback',
+//   passport.authenticate('facebook', {
+//     failureRedirect: '/login'
+//   }),
+//   function(req, res) {
+//     // Successful authentication, redirect home.
+//     res.redirect('/dashboard');
+//   });
