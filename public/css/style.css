@@ -3,15 +3,15 @@
   top: 210;
   right: 15px;
 }
+
 card-body {
   color: black;
 }
 
-
-
 body {
-    background-color: #222222;
-    color: white;
+  background-color: #222222;
+  color: white;
+  font-family: "Times New Roman";
 }
 
 a {
@@ -29,23 +29,19 @@ a:hover {
 }
 
 .main {
-     height: 890px;
-     padding: 0px;
-    /* background: url('https://image.ibb.co/iTG796/law_office2.jpg')no-repeat center top scroll;
-     background-size: 100% auto;*/
-     padding-bottom: 90%;
-     position: relative;
-     background-repeat:no-repeat;
-     padding: 0px;
-
+  position: relative;
+  height: 732px;
+  padding: 20px;
+  background: url('https://image.ibb.co/iTG796/law_office2.jpg');
+  background-size: cover;
 }
 
-.body-handler{
+.body-handler {
   padding: 20px;
 }
 
 body {
-    background-color: black;
+  background-color: black;
 }
 
 .body-text {
@@ -77,15 +73,17 @@ body {
 
 .footer {
   position: absolute;
+  top: auto;
   bottom: auto;
   width: 100%;
   /* Set the fixed height of the footer here */
-  padding-top: 15px;
+  padding-top: 20px;
   height: 160px;
-  line-height: 20px; /* Vertically center the text there */
+  line-height: 20px;
+  /* Vertically center the text there */
   background-color: #343a41;
 }
 
-.footer-copyright{
+.footer-copyright {
   padding-left: 80px;
 }
