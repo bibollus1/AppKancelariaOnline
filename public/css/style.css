@@ -1,13 +1,15 @@
 body {
     background-color: #222222;
+    color: white;
 }
 
 a {
   font-family: "Times New Roman"
 }
 
-.container-fluid {
-     height: 800px;
+
+.main {
+     height: 890px;
      padding: 0px;
      background: url('https://image.ibb.co/iTG796/law_office2.jpg')no-repeat center top scroll;
      background-size: 100% auto;
@@ -43,4 +45,22 @@ body {
   position: relative;
   margin: auto;
   padding: 10px;
+}
+
+.login {
+  color: black;
+}
+
+.register {
+  color: black;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #343a41;
 }

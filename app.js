@@ -20,6 +20,7 @@ require('./config/passport')(passport);
 const auth = require('./routes/auth');
 const index = require('./routes/index');
 const users = require('./routes/users');
+const requests = require('./routes/requests');
 
 
 
@@ -85,7 +86,7 @@ app.use((req, res, next)=>{
 app.use('/auth', auth);
 app.use('/', index);
 app.use('/users', users);
-
+app.use('/requests', requests);
 
 
 // Setting port for heroku or local
