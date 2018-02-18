@@ -4,15 +4,24 @@ body {
 }
 
 a {
-  font-family: "Times New Roman"
+  font-family: "Times New Roman";
+  color: #6c767d;
 }
 
+a:hover {
+  color: white;
+}
+
+.btn-danger {
+  border-color: transparent;
+  background-color: transparent;
+}
 
 .main {
      height: 890px;
      padding: 0px;
-     background: url('https://image.ibb.co/iTG796/law_office2.jpg')no-repeat center top scroll;
-     background-size: 100% auto;
+    /* background: url('https://image.ibb.co/iTG796/law_office2.jpg')no-repeat center top scroll;
+     background-size: 100% auto;*/
      padding-bottom: 90%;
      position: relative;
      background-repeat:no-repeat;
@@ -25,7 +34,7 @@ a {
 }
 
 body {
-    background-color: #222222;
+    background-color: black;
 }
 
 .body-text {
@@ -57,10 +66,15 @@ body {
 
 .footer {
   position: absolute;
-  bottom: 0;
+  bottom: auto;
   width: 100%;
   /* Set the fixed height of the footer here */
-  height: 60px;
-  line-height: 60px; /* Vertically center the text there */
+  padding-top: 15px;
+  height: 160px;
+  line-height: 20px; /* Vertically center the text there */
   background-color: #343a41;
+}
+
+.footer-copyright{
+  padding-left: 80px;
 }

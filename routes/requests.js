@@ -10,4 +10,10 @@ router.get('/', (req, res)=>{
 router.get('/add', (req, res)=>{
   res.render('requests/add')
 });
+
+router.get('/edit', (req, res)=>{
+  res.render('requests/edit')
+});
+
+
 module.exports = router;

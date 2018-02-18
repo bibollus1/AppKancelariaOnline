@@ -33,11 +33,11 @@ router.post('/register', (req,res)=>{
   let errors = [];
 
   if (req.body.password != req.body.password2){
-    errors.push({text:'Password do not match'});
+    errors.push({text:'Hasła nie są identyczne!'});
   }
 
   if (req.body.password.length<4){
-    errors.push({text:'Password must be at least 4 characters'})
+    errors.push({text:'Hasło musi zawierać conajmniej 4 litery!'})
   }
 
   if (errors.length>0){
