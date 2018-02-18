@@ -1,21 +1,22 @@
 const express = require('express');
 const router = express.Router();
+const {ensureAuthenticated} = require('../helpers/auth');
 
 // /requests index
-router.get('/', (req, res)=>{
+router.get('/', ensureAuthenticated, (req, res)=>{
   res.render('requests/index')
 });
 
 // Add request form
-router.get('/add', (req, res)=>{
+router.get('/add', ensureAuthenticated, (req, res)=>{
   res.render('requests/add')
 });
 
-router.get('/edit', (req, res)=>{
+router.get('/edit', ensureAuthenticated, (req, res)=>{
   res.render('requests/edit')
 });
 
-router.get('/show', (req, res)=>{
+router.get('/show', ensureAuthenticated, (req, res)=>{
   res.render('requests/show')
 });
 
