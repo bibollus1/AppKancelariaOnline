@@ -1,3 +1,14 @@
+#submit-form {
+  position: absolute;
+  top: 210;
+  right: 15px;
+}
+card-body {
+  color: black;
+}
+
+
+
 body {
     background-color: #222222;
     color: white;

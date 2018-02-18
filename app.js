@@ -39,6 +39,7 @@ const app = express();
 
 //Static folder
 app.use(express.static(path.join(__dirname, 'public'))); // sets public folder to express static folder
+app.use(express.static(path.join(__dirname, 'scripts'))); // sets public folder to express static folder
 
 // Body parser
 app.use(bodyParser.json()); // converting user input into JSON
@@ -73,6 +74,7 @@ app.use((req, res, next)=>{
   next();
 });
 
+// Flash messages
 app.use((req, res, next)=>{
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
