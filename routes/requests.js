@@ -15,5 +15,9 @@ router.get('/edit', (req, res)=>{
   res.render('requests/edit')
 });
 
+router.get('/show', (req, res)=>{
+  res.render('requests/show')
+});
+
 
 module.exports = router;

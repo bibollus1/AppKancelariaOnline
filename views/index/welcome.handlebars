@@ -4,6 +4,7 @@
       <h1>Kancelaria radców prawnych online</h1>
       <p class="lead">Kancelaria oferuje szeroki zakres usług wykonywanych przez internet.<br> W celu skorzystania z porady prawnej, należy się zarejestrować i wypełnić formularz.</p>
     </div>
+    {{#if user}}
     <div class="test-text ">
       <p><br><br><br>
         <a href="/requests">Zgłoszenia</a><br />
@@ -12,5 +13,6 @@
         <a href="/requests/add">Dodaj zgłoszenie</a><br />
       </p>
     </div>
+    {{/if}}
   </div>
 </div>
