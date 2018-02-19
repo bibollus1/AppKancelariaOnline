@@ -1,4 +1,28 @@
 <div class="container">
-  <h1>Witaj {{user.firstName}}</h1>
+  <h1>Witaj {{user.firstName}}</h1><br />
   <h4>Twoje zgłoszenia: </h4>
+  {{#if requests}}
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Tytuł</th>
+          <th scope="col">Kategoria</th>
+          <th scope="col">Data</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each requests}}
+          <tr>
+            <td><a style="color: white;" href="/requests/show/{{id}}"><p>{{title}}</p></a></td>
+            <td>{{category}}</td>
+            <td>{{formatDate date 'LLL'}}</td>
+            <td>Nieznany</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{else}}
+    <p>Nie utworzyłeś jeszcze żadnych zgłoszeń.</p>
+  {{/if}}
 </div>

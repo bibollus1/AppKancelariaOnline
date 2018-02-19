@@ -21,8 +21,16 @@ router.get('/edit', ensureAuthenticated, (req, res)=>{
   res.render('requests/edit')
 });
 // Show request form
-router.get('/show', ensureAuthenticated, (req, res)=>{
-  res.render('requests/show')
+router.get('/show/:id', ensureAuthenticated, (req, res)=>{
+  Request.findOne({
+    _id: req.params.id
+  })
+  .then(request => {
+    res.render('requests/show', {
+      request: request
+    })
+  });
+
 });
 
 // Process Add request
