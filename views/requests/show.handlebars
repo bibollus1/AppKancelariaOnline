@@ -2,16 +2,19 @@
   <div class="row">
 
   <div class="col-md-8">
-    <div class="card request" style="color: black;">
-      <div class="card-header">
-        <h1>{{request.title}}</h1>
+    <div class="card-request">
+      <div class="card request" style="color: black; height: 300px;">
+        <div class="card-header">
+          <h1>{{request.title}}</h1>
+        </div>
+          <p class="card-text">{{stripTags request.body}}</p>
+          <p class="card-text"></p>
       </div>
-        <p class="card-text">{{stripTags request.body}}</p>
-        <p class="card-text"></p>
     </div>
+
   </div>
-  <div class="col-md-4">
-    <div class="card request" style="color: black;">
+  <div class="col-md-3">
+    <div class="card request" style="color: black; height: 300px;">
         <h4 class="card-title">{{request.category}}</h4>
         <p class="card-text"> {{user.firstName}} {{user.lastName}}</p>
         <p class="card-text"> {{user.email}}</p>
