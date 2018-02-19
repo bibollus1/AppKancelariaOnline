@@ -6,6 +6,7 @@ const flash = require('connect-flash');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 const session = require('express-session');
 const passport = require('passport');
 
@@ -46,9 +47,12 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'public'))); // sets public folder to express static folder
 app.use(express.static(path.join(__dirname, 'scripts'))); // sets public folder to express static folder
 
-// Body parser
+// Body parser Middleware
 app.use(bodyParser.json()); // converting user input into JSON
 app.use(bodyParser.urlencoded({extended: true}));
+
+// Method override Middleware
+app.use(methodOverride('_method'));
 
 // Handlebars Middleware
 

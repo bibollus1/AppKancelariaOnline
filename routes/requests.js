@@ -28,6 +28,7 @@ router.get('/edit/:id', ensureAuthenticated, (req, res)=>{
     })
   });
 });
+
 // Show request form
 router.get('/show/:id', ensureAuthenticated, (req, res)=>{
   Request.findOne({
@@ -50,7 +51,6 @@ router.post('/', (req, res)=>{
     user: req.user.id
 
   }
-
   // Create request
   new Request(newRequest)
     .save()
@@ -58,5 +58,33 @@ router.post('/', (req, res)=>{
       res.redirect('/dashboard');
     })
 });
+
+// Edit Form Process
+router.put('/:id',(req,res)=>{
+  Request.findOne({
+    _id: req.params.id
+  })
+  .then(request => {
+    request.title = req.body.title,
+    request.body = req.body.title,
+    request.category = req.body.category
+
+    request.save()
+      .then(request => {
+        req.flash('success_msg', 'Edytowano zgłoszenie.')
+        res.redirect('/dashboard');
+      });
+  });
+});
+
+// Delete Request
+router.delete('/:id',(req,res)=>{
+  Request.remove({_id: req.params.id})
+    .then(()=>{
+      req.flash('success_msg', 'Usunięto zgłoszenie')
+      res.redirect('/dashboard')
+    });
+})
+
 
 module.exports = router;
