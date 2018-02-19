@@ -29,7 +29,7 @@ const requests = require('./routes/requests');
 const keys = require('./config/keys');
 
 // Load helpers
-const {formatDate, stripTags} = require('./helpers/handlebars');
+const {formatDate, stripTags, select} = require('./helpers/handlebars');
 
 // Map global promises
 mongoose.Promise = global.Promise;
@@ -55,7 +55,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.engine('handlebars',exphbs({
   helpers:{
     stripTags: stripTags,
-    formatDate: formatDate
+    formatDate: formatDate,
+    select: select
   },
   defaultLayout:'main'
 }));

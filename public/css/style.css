@@ -24,10 +24,20 @@ a:hover {
   color: white;
 }
 
-.btn-danger {
-  border-color: transparent;
-  background-color: transparent;
+.btn-delete {
+  background-color:#fe5c5c;
+  background-border: #fe5c5c;
+  width: 72px;
 }
+
+.btn-delete:hover{
+  background-color: #e89797;
+}
+
+#delete-form{
+  display:inline;
+}
+
 
 .main {
   position: relative;

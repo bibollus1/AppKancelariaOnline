@@ -8,17 +8,25 @@ const {ensureAuthenticated} = require('../helpers/auth');
 
 // /requests index
 router.get('/', ensureAuthenticated, (req, res)=>{
-  res.render('requests/index')
+  res.render('requests/index');
 });
 
 // Add request form
 router.get('/add', ensureAuthenticated, (req, res)=>{
-  res.render('requests/add')
+  res.render('requests/add');
 });
 
 // Edit request form
-router.get('/edit', ensureAuthenticated, (req, res)=>{
-  res.render('requests/edit')
+router.get('/edit/:id', ensureAuthenticated, (req, res)=>{
+
+  Request.findOne({
+    _id: req.params.id
+  })
+  .then(request => {
+    res.render('requests/edit', {
+      request: request
+    })
+  });
 });
 // Show request form
 router.get('/show/:id', ensureAuthenticated, (req, res)=>{
