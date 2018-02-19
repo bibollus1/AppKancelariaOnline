@@ -47,7 +47,7 @@ router.post('/', (req, res)=>{
   new Request(newRequest)
     .save()
     .then(request=>{
-      res.redirect('/requests/show/&{request.id}');
+      res.redirect('/dashboard');
     })
 });
 
