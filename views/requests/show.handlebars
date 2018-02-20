@@ -13,6 +13,20 @@
     </div>
     <br />
     <!-- Tu wstawić instrukcje dla Admina, jeśli admin to zrób to, jeśli nie to else #if i /if -->
+
+      {{#each request.updates}}
+
+      <div class="card">
+        <div class="card-content">
+          <h4 style="color:black;">{{updateFirstName}} {{updateLastName}}</h4>
+          <hr />
+          <h6 style="color:black;">{{formatDate updateDate 'LLL'}}</h3>
+          <h5 style="color:black;">{{updateBody}}</h5>
+
+        </div>
+      </div>
+        <br>
+      {{/each}}
       <div class="card" id="card-update">
           <span style="color: black;"> Dodaj aktualizacje</span>
           <form method="post" action="/requests/update/{{request.id}}">
@@ -22,7 +36,6 @@
             </div>
           </form>
       </div>
-
   </div>
   <div class="col-md-3">
     <div class="card request" style="color: black; height: 300px;">
@@ -33,5 +46,7 @@
     </div>
   </div>
 </div>
+
+
 </div>
   </div>

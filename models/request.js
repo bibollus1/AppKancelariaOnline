@@ -27,7 +27,13 @@ const RequestSchema = new Schema({
     // Creating answer user
     updateUser:{
       type: Schema.Types.ObjectId,
-      ref:'users'
+      ref: 'users'
+    },
+    updateFirstName:{
+      type: String,
+    },
+    updateLastName:{
+      type: String
     }
   }],
   // Creating request user

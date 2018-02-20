@@ -96,7 +96,9 @@ router.post('/update/:id', (req,res)=>{
   .then(request => {
     const newUpdate = {
       updateBody: req.body.updateBody,
-      updateUser: req.user.id
+      updateUser: req.user.id,
+      updateFirstName: req.user.firstName,
+      updateLastName: req.user.lastName
     }
     // Add to comments array
     request.updates.unshift(newUpdate);
