@@ -11,6 +11,17 @@
           <p class="card-text"></p>
       </div>
     </div>
+    <br />
+    <!-- Tu wstawić instrukcje dla Admina, jeśli admin to zrób to, jeśli nie to else #if i /if -->
+      <div class="card" id="card-update">
+          <span style="color: black;"> Dodaj aktualizacje</span>
+          <form method="post" action="/requests/update/{{request.id}}">
+            <div class="input-field">
+                <textarea data-autoresize  name="updateBody"></textarea>
+                <input type="submit" value="Wyślij" class="btn btn-success" />
+            </div>
+          </form>
+      </div>
 
   </div>
   <div class="col-md-3">

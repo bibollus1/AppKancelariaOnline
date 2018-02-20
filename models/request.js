@@ -15,17 +15,17 @@ const RequestSchema = new Schema({
     type: String,
     required: true
   },
-  feedback:[{
-    answerBody:{
+  updates: [{
+    updateBody:{
       type: String,
       required: true
     },
-    answerDate:{
+    updateDate:{
       type: Date,
       default: Date.now
     },
     // Creating answer user
-    answerUser:{
+    updateUser:{
       type: Schema.Types.ObjectId,
       ref:'users'
     }

@@ -34,6 +34,8 @@ router.get('/show/:id', ensureAuthenticated, (req, res)=>{
   Request.findOne({
     _id: req.params.id
   })
+  .populate('user')
+  .populate('comments.commentUser')
   .then(request => {
     res.render('requests/show', {
       request: request
@@ -84,7 +86,28 @@ router.delete('/:id',(req,res)=>{
       req.flash('success_msg', 'Usunięto zgłoszenie')
       res.redirect('/dashboard')
     });
-})
+});
+
+// Add update
+router.post('/update/:id', (req,res)=>{
+  Request.findOne({
+    _id: req.params.id
+  })
+  .then(request => {
+    const newUpdate = {
+      updateBody: req.body.updateBody,
+      updateUser: req.user.id
+    }
+    // Add to comments array
+    request.updates.unshift(newUpdate);
+
+    request.save()
+      .then(request=>{
+        res.redirect(`/requests/show/${request.id}`)
+      });
+  });
+});
+
 
 
 module.exports = router;
