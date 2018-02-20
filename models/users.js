@@ -25,8 +25,14 @@ const UserSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  permission:{
+    type: String,
+    required: false,
+    default: 'user'
   }
 });
+
 
 // Create collection and add schema
 mongoose.model('users', UserSchema);

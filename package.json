@@ -9,6 +9,7 @@
   "author": "Krzysztof Bibik 23621",
   "license": "ISC",
   "dependencies": {
+    "acl": "^0.4.11",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
     "connect-flash": "^0.1.1",
@@ -19,6 +20,7 @@
     "method-override": "^2.3.10",
     "moment": "^2.20.1",
     "mongoose": "^5.0.5",
+    "mongoose-role": "^2.0.1",
     "passport": "^0.4.0",
     "passport-facebook": "^2.1.1",
     "passport-google-oauth2": "^0.1.6",

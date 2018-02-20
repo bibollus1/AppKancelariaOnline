@@ -101,7 +101,7 @@ router.post('/update/:id', (req,res)=>{
       updateLastName: req.user.lastName
     }
     // Add to comments array
-    request.updates.unshift(newUpdate);
+    request.updates.push(newUpdate);
 
     request.save()
       .then(request=>{
