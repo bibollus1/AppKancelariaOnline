@@ -1,4 +1,4 @@
-<nav class="navbar bg-dark navbar-expand navbar-dark navbar-fixed-top">
+<nav class="navbar bg-dark navbar-expand navbar-dark">
   <div class="container">
     <a class="navbar-brand" href="/">Kancelaria radców prawnych</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,14 +14,6 @@
       <ul class="navbar-nav ml-auto">
 
         {{#if user}}
-          <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropMenuLink">Zgłoszenia</a>
-            <div class="dropdown-menu">
-              <!--<a href="/requests/show" class="dropdown-item">Moje zgłoszenia</a>-->
-              <a href="/requests/add" class="dropdown-item">Nowe zgłoszenie</a>
-              <a href="/requests/edit" class="dropdown-item">Edytuj zgłoszenie</a>
-            </div>
-          </li>
           <li class="nav-item">
             <a href="/auth/logout" class="nav-link"><i class="fa fa-sign-out"> Wyloguj {{user.email}}</i> </a>
           </li>
