@@ -1,11 +1,15 @@
+.admin-p{
+  margin-bottom: 5px;
+}
+
 #card-update {
   height: auto;
 }
 
 textarea {
-    box-sizing: border-box;
-    resize: none;
-    width: 100%;
+  box-sizing: border-box;
+  resize: none;
+  width: 100%;
 }
 
 #submit-form {
@@ -13,7 +17,6 @@ textarea {
   top: 210;
   right: 15px;
 }
-
 
 card-body {
   color: black;
@@ -36,32 +39,29 @@ a:hover {
 }
 
 .btn-delete {
-  background-color:#fe5c5c;
+  background-color: #fe5c5c;
   background-border: #fe5c5c;
   width: 72px;
 }
 
-.btn-delete:hover{
+.btn-delete:hover {
   background-color: #e89797;
 }
 
-#delete-form{
-  display:inline;
+#delete-form {
+  display: inline;
 }
-
 
 .main {
   position: relative;
   height: 100%;
   padding: 40px;
   margin-bottom: 200px;
-
 }
 
 .body-handler {
   padding: 20px;
 }
-
 
 .body-text {
   font-family: "Times New Roman";
@@ -97,17 +97,17 @@ a:hover {
   /* Set the fixed height of the footer here */
   height: 120px;
   padding-top: 15px;
-  line-height: 20px; /* Vertically center the text there */
+  line-height: 20px;
+  /* Vertically center the text there */
   background-color: #343a41;
 }
 
 .navbar-fixed-top {
-    position: fixed;
-    right: 0;
-    left: 0;
-    z-index: 1030;
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030;
 }
-
 
 .footer-copyright {
   padding-left: 80px;

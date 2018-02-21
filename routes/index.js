@@ -19,6 +19,8 @@ router.get('/dashboard', ensureAuthenticated, (req, res)=>{
 
 });
 
+
+
 router.get('/adminpanel', ensureAuthenticated,(req, res)=>{
   if (req.user.permission=='admin'){
 
@@ -28,24 +30,42 @@ router.get('/adminpanel', ensureAuthenticated,(req, res)=>{
                });
             });
 
-      // Requests.find({}, (err, requests)=>{
-      //   var requestMap = {};
-      //
-      //   requests.forEach((request)=>{
-      //     requestMap[request._id] = requests;
-      //   });
-      //   //res.send(requestMap);
-      // })
-      // .then(requestMap => {
-      //   res.render('index/adminpanel', {
-      //     request: requestMap
-      //   })
-      // });
   } else {
     res.redirect('/');
   }
 
 });
+
+router.get('/admin/reqadmin', ensureAuthenticated,(req, res)=>{
+  if (req.user.permission=='admin'){
+
+    Requests.find({}, function(err, requests) {
+               res.render('index/admin/reqadmin', {
+                 requests: requests
+               });
+            });
+
+  } else {
+    res.redirect('/');
+  }
+});
+
+router.get('/admin/requsers', ensureAuthenticated,(req, res)=>{
+  if (req.user.permission=='admin'){
+
+    Requests.find({}, function(err, requests) {
+               res.render('index/admin/requsers', {
+                 requests: requests
+               });
+            });
+
+  } else {
+    res.redirect('/');
+  }
+
+});
+
+
 
 router.get('/about',ensureAuthenticated, (req, res)=>{
   res.render('index/about');

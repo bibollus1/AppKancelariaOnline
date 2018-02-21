@@ -1,38 +1,18 @@
 <div class="container">
-  <h1>Witaj {{user.firstName}}</h1><br />
-  <h4>Twoje zgłoszenia: </h4>
-  {{#if requests}}
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Tytuł</th>
-          <th scope="col">Kategoria</th>
-          <th scope="col">Data</th>
-          <th scope="col">Status</th>
-          <th scope="col"></th>
+  <h2 style="margin-bottom: 50px;"> Witaj administratorze {{user.firstName}}</h2>
 
-        </tr>
-      </thead>
-      <tbody>
-        {{#each requests}}
-          <tr>
-            <td><a style="color: white;" href="/requests/show/{{id}}"><p>{{title}}</p></a></td>
-            <td>{{category}}</td>
-            <td>{{formatDate date 'LLL'}}</td>
-            <td>Nieznany</td>
-            <td>
-              <a class="btn btn-success btn-sm" href="/requests/show/{{id}}"><i class="fa fa-folder-open"></i> Otwórz</a>
-              <a class="btn btn-info btn-sm" href="/requests/edit/{{id}}"><i class="fa fa-pencil"></i> Edytuj</a>
-              <form action="/requests/{{id}}?_method=DELETE" method="post" id="delete-form">
-                <input type="hidden" name="_method" value="DELETE">
-                <button type="submit" class="btn btn-delete btn-sm"><i class="fa fa-close">Usuń</i></button>
-              </form>
-            </td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  {{else}}
-    <p>Nie utworzyłeś jeszcze żadnych zgłoszeń.</p>
-  {{/if}}
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+        <p class="admin-p">Przejdz do zarzadania zgloszeniami</p>
+        <a class="btn btn-success btn-sm" id="uzytkownicy" href="/admin/reqadmin"><i class="fa fa-list-alt"></i> Zgłoszenia</a>
+        <br /><br />
+        <p class="admin-p">Przejdz do zarzadania uzytkownikami</p>
+        <a class="btn btn-success btn-sm" href="/admin/requsers"><i class="fa fa-address-card"></i> Użytkownicy</a>
+
+    </div>
+    <div class="col-sm-6 col-centered">
+
+    </div>
+  </div>
+
 </div>
