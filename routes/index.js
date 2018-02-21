@@ -23,9 +23,11 @@ router.get('/adminpanel', ensureAuthenticated,(req, res)=>{
   if (req.user.permission=='admin'){
 
     Requests.find({}, function(err, requests) {
-               res.render('index/adminpanel', {requests: requests});
+               res.render('index/adminpanel', {
+                 requests: requests
+               });
             });
-            
+
       // Requests.find({}, (err, requests)=>{
       //   var requestMap = {};
       //

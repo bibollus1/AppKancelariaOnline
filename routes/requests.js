@@ -50,7 +50,10 @@ router.post('/', (req, res)=>{
     title: req.body.title,
     category: req.body.category,
     body: req.body.body,
-    user: req.user.id
+    user: req.user.id,
+    email: req.user.email,
+    firstName: req.user.firstName,
+    lastName: req.user.lastName
 
   }
   // Create request
@@ -101,7 +104,7 @@ router.post('/update/:id', (req,res)=>{
       updateLastName: req.user.lastName
     }
     // Add to comments array
-    request.updates.push(newUpdate);
+    request.updates.unshift(newUpdate);
 
     request.save()
       .then(request=>{

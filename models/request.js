@@ -30,7 +30,7 @@ const RequestSchema = new Schema({
       ref: 'users'
     },
     updateFirstName:{
-      type: String,
+      type: String
     },
     updateLastName:{
       type: String
@@ -40,6 +40,15 @@ const RequestSchema = new Schema({
   user:{
     type: Schema.Types.ObjectId,
     ref:'users'
+  },
+  firstName: {
+    type: String
+  },
+  lastName:{
+    type: String
+  },
+  email:{
+    type: String
   },
   date: {
     type: Date,
