@@ -104,7 +104,7 @@ router.delete('/:id',(req,res)=>{
   Request.remove({_id: req.params.id})
     .then(()=>{
       req.flash('success_msg', 'Usunięto zgłoszenie')
-      res.redirect('/dashboard')
+      res.redirect('/admin/reqadmin')
     });
 });
 
@@ -129,9 +129,5 @@ router.post('/update/:id', (req,res)=>{
       });
   });
 });
-
-
-
-
 
 module.exports = router;

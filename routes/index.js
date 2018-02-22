@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Requests = mongoose.model('requests');
+const Users = mongoose.model('users');
 const {ensureAuthenticated, ensureGuest} = require('../helpers/auth');
 
 router.get('/', ensureGuest,(req, res)=>{
@@ -53,9 +54,9 @@ router.get('/admin/reqadmin', ensureAuthenticated,(req, res)=>{
 router.get('/admin/requsers', ensureAuthenticated,(req, res)=>{
   if (req.user.permission=='admin'){
 
-    Requests.find({}, function(err, requests) {
+    Users.find({}, function(err, users) {
                res.render('index/admin/requsers', {
-                 requests: requests
+                 users: users
                });
             });
 

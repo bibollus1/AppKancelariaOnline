@@ -1,1 +1,42 @@
-<h1>Zarządzaj użytkownikami.</h1>
+<div class="container">
+  <button type="button" class="btn btn-primary" style="float: right;" >Wstecz</button>
+  <h4>Pełna lista użytkowników: </h4>
+  <br />
+  {{#if users}}
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Email</th>
+          <th scope="col">Imię</th>
+          <th scope="col">Nazwisko</th>
+          <th scope="col">Data rejestracji</th>
+          <th scope="col">Typ konta</th>
+          <th scope="col"></th>
+
+        </tr>
+      </thead>
+      <tbody>
+        {{#each users}}
+          <tr>
+            <td>{{email}}</td>
+            <td>{{firstName}}</td>
+            <td>{{lastName}}</td>
+            <td>{{formatDate date 'LLL'}}</td>
+            <td>{{permission}}</td>
+
+            <td>
+              <a class="btn btn-success btn-sm" href="/requests/show/{{id}}"><i class="fa fa-folder-open"></i> Otwórz</a>
+              <!-- <a class="btn btn-info btn-sm" href="/requests/edit/{{id}}"><i class="fa fa-pencil"></i> Edytuj</a> -->
+              <form action="/users/{{id}}?_method=DELETE" method="post" id="delete-form">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit" class="btn btn-delete btn-sm"><i class="fa fa-close">Usuń</i></button>
+              </form>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{else}}
+    <p>Nie utworzyłeś jeszcze żadnych zgłoszeń.</p>
+  {{/if}}
+</div>

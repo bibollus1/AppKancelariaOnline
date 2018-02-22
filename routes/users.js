@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const mongoose = require('mongoose');
+const Users = mongoose.model('users');
 const router = express.Router();
 
 //Load user Model
@@ -84,6 +85,16 @@ router.post('/register', (req,res)=>{
 
   }
 });
+
+// Delete user
+router.delete('/:id', (req, res)=>{
+  Users.remove({_id: req.params.id})
+  .then(()=>{
+    req.flash('success_msg', 'Usunięto użytkownika')
+    res.redirect('/admin/requsers')
+  });
+});
+
 
 // Logout user
 // router.get('/logout', (req,res)=>{

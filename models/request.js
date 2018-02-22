@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+const archive = require('mongoose-archiver');
 // Create schema
 const RequestSchema = new Schema({
   title:{
@@ -61,6 +61,8 @@ const RequestSchema = new Schema({
     default: Date.now
   },
 });
+
+RequestSchema.plugin(archive);
 
 // Create collection and add schema
 mongoose.model('requests', RequestSchema);
