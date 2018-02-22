@@ -1,5 +1,5 @@
 <div class="container">
-  <button type="button" class="btn btn-primary" style="float: right;" >Wstecz</button>
+  <button onClick="goBack()" type="button" class="btn btn-primary" style="float: right;" >Wstecz</button>
   <h4>Pełna lista użytkowników: </h4>
   <br />
   {{#if users}}
@@ -25,7 +25,7 @@
             <td>{{permission}}</td>
 
             <td>
-              <a class="btn btn-success btn-sm" href="/requests/show/{{id}}"><i class="fa fa-folder-open"></i> Otwórz</a>
+              <a class="btn btn-success btn-sm" href="/users/mantain/{{id}}"><i class="fa fa-folder-open"></i> Otwórz</a>
               <!-- <a class="btn btn-info btn-sm" href="/requests/edit/{{id}}"><i class="fa fa-pencil"></i> Edytuj</a> -->
               <form action="/users/{{id}}?_method=DELETE" method="post" id="delete-form">
                 <input type="hidden" name="_method" value="DELETE">

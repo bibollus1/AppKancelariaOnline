@@ -4,6 +4,7 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const Users = mongoose.model('users');
 const router = express.Router();
+const {ensureAuthenticated} = require('../helpers/auth');
 
 //Load user Model
 require('../models/users');
@@ -82,7 +83,6 @@ router.post('/register', (req,res)=>{
           });
         }
       });
-
   }
 });
 
@@ -95,6 +95,23 @@ router.delete('/:id', (req, res)=>{
   });
 });
 
+
+// Show user:
+
+router.get('/mantain/:id', ensureAuthenticated, (req, res)=>{
+  if (req.user.permission=='admin'){
+    Users.findOne({
+      _id: req.params.id
+    })
+    .then(user => {
+      res.render('users/maintain', {
+        user: user
+      })
+    });
+  } else {
+    res.redirect('/');
+  }
+});
 
 // Logout user
 // router.get('/logout', (req,res)=>{
