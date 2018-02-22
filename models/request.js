@@ -11,10 +11,15 @@ const RequestSchema = new Schema({
     type: String,
     required: true
   },
+  status:{
+    type: String,
+    default: 'nowe',
+  },
   body:{
     type: String,
     required: true
   },
+
   updates: [{
     updateBody:{
       type: String,
@@ -34,7 +39,8 @@ const RequestSchema = new Schema({
     },
     updateLastName:{
       type: String
-    }
+    },
+
   }],
   // Creating request user
   user:{

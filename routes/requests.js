@@ -49,6 +49,7 @@ router.post('/', (req, res)=>{
   const newRequest = {
     title: req.body.title,
     category: req.body.category,
+    status: req.body.status,
     body: req.body.body,
     user: req.user.id,
     email: req.user.email,
@@ -71,13 +72,29 @@ router.put('/:id',(req,res)=>{
   })
   .then(request => {
     request.title = req.body.title,
-    request.body = req.body.title,
+    request.body = req.body.body,
+    request.status = req.body.status,
     request.category = req.body.category
 
     request.save()
       .then(request => {
         req.flash('success_msg', 'Edytowano zgłoszenie.')
         res.redirect('/dashboard');
+      });
+  });
+});
+
+// Change status
+router.post('/:id',(req,res)=>{
+  Request.findOne({
+    _id: req.params.id
+  })
+  .then(request => {
+    request.status = req.body.status,
+    request.save()
+      .then(request => {
+        req.flash('success_msg', 'Zmieniono status.');
+        res.redirect('/admin/reqadmin');
       });
   });
 });
@@ -101,7 +118,7 @@ router.post('/update/:id', (req,res)=>{
       updateBody: req.body.updateBody,
       updateUser: req.user.id,
       updateFirstName: req.user.firstName,
-      updateLastName: req.user.lastName
+      updateLastName: req.user.lastName,
     }
     // Add to comments array
     request.updates.unshift(newUpdate);
@@ -112,6 +129,8 @@ router.post('/update/:id', (req,res)=>{
       });
   });
 });
+
+
 
 
 

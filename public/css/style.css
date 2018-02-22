@@ -1,3 +1,7 @@
+#hide-me{
+  display: none;
+}
+
 .admin-p{
   margin-bottom: 5px;
 }
@@ -13,9 +17,8 @@ textarea {
 }
 
 #submit-form {
-  position: absolute;
-  top: 210;
-  right: 15px;
+  position: fixed;
+  margin-right: 100000px;
 }
 
 card-body {
@@ -39,6 +42,7 @@ a:hover {
 }
 
 .btn-delete {
+  display: inline-block;
   background-color: #fe5c5c;
   background-border: #fe5c5c;
   width: 72px;

@@ -22,13 +22,13 @@
             <td><a style="color: white;" href="/requests/show/{{id}}"><p>{{title}}</p></a></td>
             <td>{{category}}</td>
             <td>{{formatDate date 'LLL'}}</td>
-            <td>Nieznany</td>
+            <td>{{status}}</td>
             <td>
               <a class="btn btn-success btn-sm" href="/requests/show/{{id}}"><i class="fa fa-folder-open"></i> Otwórz</a>
               <a class="btn btn-info btn-sm" href="/requests/edit/{{id}}"><i class="fa fa-pencil"></i> Edytuj</a>
               <form action="/requests/{{id}}?_method=DELETE" method="post" id="delete-form">
                 <input type="hidden" name="_method" value="DELETE">
-                <button type="submit" class="btn btn-delete btn-sm"><i class="fa fa-close">Usuń</i></button>
+                <button type="submit" class="btn btn-delete btn-sm"><i class="fa fa-close"> Usuń</i></button>
               </form>
             </td>
           </tr>
