@@ -104,6 +104,7 @@ router.get('/mantain/:id', ensureAuthenticated, (req, res)=>{
       _id: req.params.id
     })
     .then(user => {
+
       res.render('users/maintain', {
         user: user
       })
@@ -111,6 +112,25 @@ router.get('/mantain/:id', ensureAuthenticated, (req, res)=>{
   } else {
     res.redirect('/');
   }
+});
+
+// Edit user process
+router.put('/mantain/:id',(req,res)=>{
+  Users.findOne({
+    _id: req.params.id
+  })
+  .then(user => {
+    user.firstName = req.body.firstName,
+    user.lastName = req.body.lastName,
+    user.email = req.body.email,
+    user.permission = req.body.permission
+
+    user.save()
+      .then(user => {
+        req.flash('success_msg', 'Edytowano użytkownika.')
+        res.redirect('/admin/requsers');
+      });
+  });
 });
 
 // Logout user

@@ -1,4 +1,36 @@
-{{user.firstName}}<br />
-{{user.lastName}}<br />
-{{user.email}}<br />
-{{user.permission}}<br />
+
+<button onClick="goBack()" type="button" class="btn btn-primary" style="float: right;" >Wstecz</button>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+    <form action="/users/mantain/{{user.id}}?_method=PUT" method="POST">
+      <input type="hidden" name="_method" value="PUT">
+      <div class="col-md-10">
+        <div class="form-group row">
+          <label for="Test" class="col-sm-4 col-form-label">Email: {{user.email}}</label>
+            <input type="text" class="form-control" name="email" value="{{user.email}}" placeholder="Wpisz email">
+          </div>
+          <div class="form-group row">
+            <label for="Test" class="col-sm-4 col-form-label">Imię: {{user.firstName}}</label>
+              <input type="text" class="form-control" name="firstName" value="{{user.firstName}}" placeholder="Wpisz imię">
+          </div>
+          <div class="form-group row">
+            <label for="Test" class="col-sm-4 col-form-label">Nazwisko: {{user.lastName}}</label>
+              <input type="text" class="form-control" name="lastName" value="{{user.lastName}}" placeholder="Wpisz imię">
+          </div>
+          <div class="form-group row">
+            <label for="category" class="col-sm-4 col-form-label">Typ konta</label>
+              <select multiple class="form-control" name="permission" required>
+                <option>użytkownik</option>
+                <option>moderator</option>
+                <option>admin</option>
+              </select>
+          </div>
+        </div>
+          <button type="submit" class="btn btn-success btn-lg" value="Save" id="submit-form">Zatwierdź</button>
+      </form>
+      </div>
+
+  </div>
+
+</div>

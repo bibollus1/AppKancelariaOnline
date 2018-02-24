@@ -23,7 +23,7 @@ router.get('/dashboard', ensureAuthenticated, (req, res)=>{
 
 
 router.get('/adminpanel', ensureAuthenticated,(req, res)=>{
-  if (req.user.permission=='admin'){
+  if ((req.user.permission=='admin')||(req.user.permission=='moderator')){
 
     Requests.find({}, function(err, requests) {
                res.render('index/adminpanel', {
@@ -38,7 +38,7 @@ router.get('/adminpanel', ensureAuthenticated,(req, res)=>{
 });
 
 router.get('/admin/reqadmin', ensureAuthenticated,(req, res)=>{
-  if (req.user.permission=='admin'){
+  if ((req.user.permission=='admin')||(req.user.permission=='moderator')){
 
     Requests.find({}, function(err, requests) {
                res.render('index/admin/reqadmin', {
@@ -61,7 +61,9 @@ router.get('/admin/requsers', ensureAuthenticated,(req, res)=>{
             });
 
   } else {
-    res.redirect('/');
+    req.flash('error_msg', 'Brak uprawnień!')
+    res.redirect('/adminpanel');
+
   }
 
 });
