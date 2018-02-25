@@ -13,8 +13,9 @@ const request = require('request');
 
 
 // Load models
-require('./models/users')
-require('./models/request')
+require('./models/users');
+require('./models/request');
+require('./models/files');
 
 
 // Passport config

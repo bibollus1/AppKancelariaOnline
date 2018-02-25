@@ -4,3 +4,21 @@
   <input type="file" name="file-to-upload">
   <input type="submit" value="Upload">
 </form>
+
+
+
+
+
+
+<form action="/files/private" enctype="multipart/form-data" method="post">
+  <input type="file" name="file-to-upload">
+  <input type="submit" value="Sroad">
+</form>
+
+{{#if files}}
+<h1>siemano</h1>
+{{#each files}}
+<h1>{{fieldname}}</h1>
+{{/each}}
+{{/if}}
+<a href="uploads/9335f4d57a9496a583ab8e578052a554">File Name</a>
