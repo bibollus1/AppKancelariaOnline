@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const passport = require('passport');
+const request = require('request');
 
 
 // Load models
@@ -24,6 +25,7 @@ const auth = require('./routes/auth');
 const index = require('./routes/index');
 const users = require('./routes/users');
 const requests = require('./routes/requests');
+const files = require('./routes/files');
 
 
 
@@ -31,15 +33,19 @@ const requests = require('./routes/requests');
 const keys = require('./config/keys');
 
 // Load helpers
-const {formatDate, stripTags, select} = require('./helpers/handlebars');
+const {
+  formatDate,
+  stripTags,
+  select
+} = require('./helpers/handlebars');
 
 // Map global promises
 mongoose.Promise = global.Promise;
 
 // Mongoose connect
 mongoose.connect(keys.mongoURI)
-.then(()=>console.log('MongoDB Connected...'))
-.catch(err=>console.log(err));
+  .then(() => console.log('MongoDB Connected...'))
+  .catch(err => console.log(err));
 
 // Initialize app
 const app = express();
@@ -50,20 +56,22 @@ app.use(express.static(path.join(__dirname, 'scripts'))); // sets public folder 
 
 // Body parser Middleware
 app.use(bodyParser.json()); // converting user input into JSON
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 // Method override Middleware
 app.use(methodOverride('_method'));
 
 // Handlebars Middleware
 
-app.engine('handlebars',exphbs({
-  helpers:{
+app.engine('handlebars', exphbs({
+  helpers: {
     stripTags: stripTags,
     formatDate: formatDate,
     select: select
   },
-  defaultLayout:'main'
+  defaultLayout: 'main'
 }));
 app.set('view engine', 'handlebars');
 
@@ -84,13 +92,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Set Global variables
-app.use((req, res, next)=>{
+app.use((req, res, next) => {
   res.locals.user = req.user || null;
   next();
 });
 
 // Flash messages
-app.use((req, res, next)=>{
+app.use((req, res, next) => {
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');
@@ -103,11 +111,11 @@ app.use('/auth', auth);
 app.use('/', index);
 app.use('/users', users);
 app.use('/requests', requests);
-
+app.use('/files', files);
 
 // Setting port for heroku or local
 const port = process.env.PORT || 3000;
 // Listening port
-app.listen(port, ()=>{
+app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });

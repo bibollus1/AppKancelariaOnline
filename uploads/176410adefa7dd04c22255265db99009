@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"></head>
+<body>
+<div class="name">Player 1</div>
+<h1>Siema</h>
+	<script>
+
+	
+/*
+var test=(()=>{
+	
+	var zmienna = 1;
+	let es6 = 2;
+	console.log(zmienna);
+	console.log(es6);
+	
+	var test2 = ((doc)=>{
+		
+		console.log(`Zmienna w test 2 ${zmienna}`);
+		console.log(`Let w test 2 ${es6}` );
+		console.log('Ciekawe co tam słychać');
+		 zmienna = 10;
+		var let2 = 15;
+		console.log(zmienna);
+		console.log(let2);
+		console.log(doc);
+		
+		
+	});
+
+	return test2('You know me!');
+	
+
+});
+test();
+
+var dom = document.querySelector('.name');
+console.log(dom);
+var ustaw = prompt('Wprowadź zmianę');
+dom.innerHTML = ustaw;
+
+
+Person.prototype.myFriends6 = function(friends{
+	var arr = friends.map((el) => {
+		return `${this.name} is friends with ${el}`;
+	});
+	console.log(arr);
+});*/
+
+function smithPerson(firstName, lastName='Smith', yearOfBirth, nationality='american'){
+	this.firstName = firstName;
+	this.lastName = lastName;
+	this.yearOfBirth = yearOfBirth;
+	this.nationality = nationality;
+	
+}
+
+var john = new smithPerson('Jack',undefined,1994);
+console.log(john);
+
+
+		
+		
+		
+		
+		
+	</script>
+	
+</body>
+
+</html>
+
