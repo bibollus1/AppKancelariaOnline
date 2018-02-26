@@ -76,4 +76,12 @@ router.post('/private', uploadPrivate.single('file-to-upload'), (req, res) => {
   res.redirect('/');
 });
 
+router.delete('/:id', (req, res)=>{
+  Files.remove({_id: req.params.id})
+  .then(()=>{
+    req.flash('success_msg', 'Usunięto plik')
+    res.redirect('/files')
+  });
+});
+
 module.exports = router;
