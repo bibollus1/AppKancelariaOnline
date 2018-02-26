@@ -1,0 +1,29 @@
+<div class="container">
+
+
+  <!-- {{#if files}}
+    {{#each files}}
+      <a style="color: white;" href="/uploads/public/{{originalname}}">{{originalname}}</a>
+    {{/each}} -->
+    <h4>Pliki do pobrania: </h4> <br />
+
+  <table class="table">
+    <thead>
+
+      <tr>
+        <th scope="col">Nazwa pliku</th>
+        <th scope="col">Data dodania</th>
+        <th scope="col">Rozmiar pliku</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each files}}
+      <tr>
+        <td><a style="color: white;" href="/uploads/public/{{originalname}}">{{originalname}}</a>
+        <td>{{formatDate date 'LLL'}}</td>
+        <td>{{filesize size}}</td>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+  {{/if}}

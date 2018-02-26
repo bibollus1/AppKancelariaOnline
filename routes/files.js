@@ -2,14 +2,26 @@ const express = require('express');
 const mongoose = require('mongoose');
 const multer = require('multer');
 const Files = mongoose.model('files');
-
+const {ensureAuthenticated} = require('../helpers/auth');
 const router = express.Router();
 
 // Get /files
-router.get('/', (req, res) => {
+router.get('/', ensureAuthenticated, (req, res) => {
+  if ((req.user.permission=='admin')||(req.user.permission=='moderator')){
   Files.find({}, function(err, files) {
     res.render('files/repo', {files: files});
   });
+}else {
+  res.redirect('/');
+}
+});
+
+// Get public /files
+router.get('/public', ensureAuthenticated, (req, res) => {
+  Files.find({}, function(err, files) {
+    res.render('files/publicrepo', {files: files});
+  });
+
 });
 
 // Create public diskStorage
@@ -18,7 +30,7 @@ var storage = multer.diskStorage({
     cb(null, 'public/uploads/public')
   },
   filename: function(req, file, cb) {
-    cb(null, Date.now() + '-' + file.originalname)
+    cb(null,file.originalname)
   }
 });
 
@@ -28,7 +40,7 @@ var privStorage = multer.diskStorage({
     cb(null, 'public/uploads/private')
   },
   filename: function(req, file, cb) {
-    cb(null, Date.now() + '-' + file.originalname)
+    cb(null,file.originalname)
   }
 });
 
@@ -46,10 +58,11 @@ router.post('/', uploadPublic.single('file-to-upload'), (req, res) => {
     fieldname: req.file.fieldname,
     originalname: req.file.originalname,
     encoding: req.file.encoding,
-    path: Date.now() + '-' + req.file.originalname
+    path: req.file.path,
+    size: req.file.size
 
   }
-  // Create request
+  // Create files
   new Files(newFile)
     .save()
     .then(files => {

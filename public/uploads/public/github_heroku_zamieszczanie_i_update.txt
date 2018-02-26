@@ -1,0 +1,128 @@
+Microsoft Windows [Version 10.0.16299.248]
+(c) 2017 Microsoft Corporation. Wszelkie prawa zastrze¿one.
+
+C:\Users\bibollus1>cd documents
+
+C:\Users\bibollus1\Documents>cd appkancelariaonline
+
+C:\Users\bibollus1\Documents\AppKancelariaOnline>git init
+Initialized empty Git repository in C:/Users/bibollus1/Documents/AppKancelariaOnline/.git/
+
+C:\Users\bibollus1\Documents\AppKancelariaOnline>git remote add origin https://github.com/bibollus1/AppKancelariaOnline.git
+
+C:\Users\bibollus1\Documents\AppKancelariaOnline>git push -u origin master
+error: src refspec master does not match any.
+error: failed to push some refs to 'https://github.com/bibollus1/AppKancelariaOnline.git'
+
+C:\Users\bibollus1\Documents\AppKancelariaOnline>git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        .gitignore
+        app.js
+        dokumentacje.txt
+        package-lock.json
+        package.json
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+C:\Users\bibollus1\Documents\AppKancelariaOnline>git add .
+warning: LF will be replaced by CRLF in .gitignore.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in package-lock.json.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in package.json.
+The file will have its original line endings in your working directory.
+
+C:\Users\bibollus1\Documents\AppKancelariaOnline>git commit -m "First commit"
+[master (root-commit) 19b42c0] First commit
+ 5 files changed, 526 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 app.js
+ create mode 100644 dokumentacje.txt
+ create mode 100644 package-lock.json
+ create mode 100644 package.json
+
+C:\Users\bibollus1\Documents\AppKancelariaOnline>git push -u origin master
+Counting objects: 7, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (7/7), 5.59 KiB | 2.79 MiB/s, done.
+Total 7 (delta 0), reused 0 (delta 0)
+To https://github.com/bibollus1/AppKancelariaOnline.git
+ * [new branch]      master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+
+C:\Users\bibollus1\Documents\AppKancelariaOnline>heroku login
+Enter your Heroku credentials:
+Email: bibollus1@gmail.com
+Password: *********
+Logged in as bibollus1@gmail.com
+
+C:\Users\bibollus1\Documents\AppKancelariaOnline>heroku create
+Creating app... done, desolate-reef-40126
+https://desolate-reef-40126.herokuapp.com/ | https://git.heroku.com/desolate-reef-40126.git
+
+C:\Users\bibollus1\Documents\AppKancelariaOnline>heroku git:remote -a desolate-reef-40126
+set git remote heroku to https://git.heroku.com/desolate-reef-40126.git
+
+C:\Users\bibollus1\Documents\AppKancelariaOnline>git push heroku master
+Counting objects: 7, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (7/7), 5.59 KiB | 2.79 MiB/s, done.
+Total 7 (delta 0), reused 0 (delta 0)
+remote: Compressing source files... done.
+remote: Building source:
+remote:
+remote: -----> Node.js app detected
+remote:
+remote: -----> Creating runtime environment
+remote:
+remote:        NPM_CONFIG_LOGLEVEL=error
+remote:        NPM_CONFIG_PRODUCTION=true
+remote:        NODE_VERBOSE=false
+remote:        NODE_ENV=production
+remote:        NODE_MODULES_CACHE=true
+remote:
+remote: -----> Installing binaries
+remote:        engines.node (package.json):  unspecified
+remote:        engines.npm (package.json):   unspecified (use default)
+remote:
+remote:        Resolving node version 8.x...
+remote:        Downloading and installing node 8.9.4...
+remote:        Using default npm version: 5.6.0
+remote:
+remote: -----> Restoring cache
+remote:        Skipping cache restore (not-found)
+remote:
+remote: -----> Building dependencies
+remote:        Installing node modules (package.json + package-lock)
+remote:        added 67 packages in 2.253s
+remote:
+remote: -----> Caching build
+remote:        Clearing previous node cache
+remote:        Saving 2 cacheDirectories (default):
+remote:        - node_modules
+remote:        - bower_components (nothing to cache)
+remote:
+remote: -----> Build succeeded!
+remote: -----> Discovering process types
+remote:        Procfile declares types     -> (none)
+remote:        Default types for buildpack -> web
+remote:
+remote: -----> Compressing...
+remote:        Done: 19.1M
+remote: -----> Launching...
+remote:        Released v3
+remote:        https://desolate-reef-40126.herokuapp.com/ deployed to Heroku
+remote:
+remote: Verifying deploy... done.
+To https://git.heroku.com/desolate-reef-40126.git
+ * [new branch]      master -> master
+
+C:\Users\bibollus1\Documents\AppKancelariaOnline>

@@ -37,7 +37,8 @@ const keys = require('./config/keys');
 const {
   formatDate,
   stripTags,
-  select
+  select,
+  filesize
 } = require('./helpers/handlebars');
 
 // Map global promises
@@ -70,7 +71,8 @@ app.engine('handlebars', exphbs({
   helpers: {
     stripTags: stripTags,
     formatDate: formatDate,
-    select: select
+    select: select,
+    filesize: filesize
   },
   defaultLayout: 'main'
 }));

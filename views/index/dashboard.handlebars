@@ -2,7 +2,9 @@
   <h1>Witaj {{user.firstName}}</h1><br />
 
   <h4>Twoje zgłoszenia: </h4> <br />
+
   {{#if requests}}
+    <a class="btn btn-success btn-sm" href="/files/public"><i class="fa fa-download"></i> Do pobrania</a>   <br /><br />
     <a class="btn btn-success btn-sm"href="/requests/add"><i class="fa fa-folder-open"></i> Nowe zgłoszenie</a>   <br /><br />
     <table class="table">
       <thead>
@@ -38,6 +40,10 @@
   {{else}}
     <p>Nie utworzyłeś jeszcze żadnych zgłoszeń,</p>
     <p>Kliknij przycisk poniżej aby utworzyć nowe.</p>
-      <a class="btn btn-success btn-sm"href="/requests/add"><i class="fa fa-folder-open"></i> Nowe zgłoszenie</a>
+      <a class="btn btn-success btn-sm"href="/requests/add"><i class="fa fa-folder-open"></i> Nowe zgłoszenie</a><br />
+      <p>lub obejrzyj i pobierz dostępne pliki</p>
+      <a class="btn btn-success btn-sm" href="/files/public"><i class="fa fa-download"></i> Do pobrania</a>   <br /><br />
   {{/if}}
+
+
 </div>

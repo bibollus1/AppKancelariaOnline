@@ -11,7 +11,14 @@ const FilesSchema = new Schema({
   encoding:{
     type: String,
   },
-  patch:{
+  path:{
+    type: String
+  },
+  date: {
+    type: Date,
+    default: Date.now
+  },
+  size: {
     type: String
   }
 });
