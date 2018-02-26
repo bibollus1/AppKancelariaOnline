@@ -4,6 +4,7 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const Users = mongoose.model('users');
 const router = express.Router();
+const Files = mongoose.model('files');
 const {ensureAuthenticated} = require('../helpers/auth');
 
 //Load user Model
@@ -13,6 +14,12 @@ const User = mongoose.model('users');
 // User login route
 router.get('/login', (req, res)=>{
   res.render('users/login');
+});
+
+router.get('/file', (req, res) => {
+  Users.find({}, function(err, users) {
+    res.render('index/about', {users: users});
+  });
 });
 
 // Login Form POST

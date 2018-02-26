@@ -1,4 +1,41 @@
 <div class="container">
-      <button onClick="goBack()" type="button" class="btn btn-primary" style="float: right;" >Wstecz</button>
-  <h1>O stronie</h1>
+  <button onClick="goBack()" type="button" class="btn btn-primary" style="float: right;" >Wstecz</button>
+  <h4>Pełna lista użytkowników: </h4>
+  <br />
+  {{#if files}}
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Email</th>
+          <th scope="col">Imię</th>
+          <th scope="col">Nazwisko</th>
+          <th scope="col">Data rejestracji</th>
+          <th scope="col">Typ konta</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each files}}
+          <tr>
+            <td>{{email}}</td>
+            <td>{{firstName}}</td>
+            <td>{{lastName}}</td>
+            <td>{{formatDate date 'LLL'}}</td>
+            <td>{{permission}}</td>
+
+            <td>
+              <a class="btn btn-success btn-sm" href="/users/mantain/{{id}}"><i class="fa fa-folder-open"></i> Otwórz</a>
+              <!-- <a class="btn btn-info btn-sm" href="/requests/edit/{{id}}"><i class="fa fa-pencil"></i> Edytuj</a> -->
+              <form action="/users/{{id}}?_method=DELETE" method="post" id="delete-form">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit" class="btn btn-delete btn-sm"><i class="fa fa-close">Usuń</i></button>
+              </form>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{else}}
+    <p>Nie istnieje żaden użytkownik.</p>
+  {{/if}}
 </div>

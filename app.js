@@ -95,6 +95,7 @@ app.use(passport.session());
 // Set Global variables
 app.use((req, res, next) => {
   res.locals.user = req.user || null;
+  res.locals.files = req.file || null;
   next();
 });
 

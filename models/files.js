@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const RequestSchema = new Schema({
+const FilesSchema = new Schema({
   fieldname:{
     type: String
   },
@@ -10,8 +10,11 @@ const RequestSchema = new Schema({
   },
   encoding:{
     type: String,
+  },
+  patch:{
+    type: String
   }
 });
 
 // Create collection and add schema
-mongoose.model('files', RequestSchema);
+mongoose.model('files', FilesSchema);
