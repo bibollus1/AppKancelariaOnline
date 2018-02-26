@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const multer = require('multer');
+const _ = require('lodash');
 const Files = mongoose.model('files');
 const {ensureAuthenticated} = require('../helpers/auth');
 const router = express.Router();
@@ -20,9 +21,24 @@ router.get('/', ensureAuthenticated, (req, res) => {
 router.get('/public', ensureAuthenticated, (req, res) => {
   Files.find({}, function(err, files) {
     res.render('files/publicrepo', {files: files});
+    console.log(files);
   });
 
+
 });
+
+// MEGA WAŻNE TRZYMAĆ DO PRIVATE
+// Files.find({sharedTo: {
+//       '$all': req.user._id
+//   }}, (err, files) => {
+//   if (files.length > 0){
+//       // print file name and array of users which file is belong to
+//       files.map(file => console.log(file.fieldname, file.sharedTo));
+//       res.render('files/publicrepo', {files: files});
+//   }else{
+//       console.log('error');
+//   }
+
 
 // Create public diskStorage
 var storage = multer.diskStorage({
@@ -59,7 +75,8 @@ router.post('/', uploadPublic.single('file-to-upload'), (req, res) => {
     originalname: req.file.originalname,
     encoding: req.file.encoding,
     path: req.file.path,
-    size: req.file.size
+    size: req.file.size,
+    sharedTo: req.user._id
 
   }
   // Create files
