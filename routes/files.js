@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const multer = require('multer');
 const _ = require('lodash');
 const Files = mongoose.model('files');
+const Privs = mongoose.model('privs');
 const {ensureAuthenticated} = require('../helpers/auth');
 const router = express.Router();
 

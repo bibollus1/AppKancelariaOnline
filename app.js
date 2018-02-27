@@ -16,7 +16,7 @@ const request = require('request');
 require('./models/users');
 require('./models/request');
 require('./models/files');
-//require('./models/privfiles');
+require('./models/privs');
 
 
 // Passport config
