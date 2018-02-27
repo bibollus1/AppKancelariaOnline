@@ -1,15 +1,19 @@
 <div class="container">
   <div style="position:relative;">
-    <form action="/files" enctype="multipart/form-data" method="post">
+    <form action="/files/privs" enctype="multipart/form-data" method="post">
           <a class='btn btn-primary' href='javascript:;'>
               Wybierz plik...
               <input type="file" name="file-to-upload" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="file_source" size="40"  onchange='$("#upload-file-info").html($(this).val());'>
           </a>
           <span class='label label-info' id="upload-file-info"></span>
+          <label for="email" class="col-sm-2 col-form-label">Email użytkownika</label>
+          <input type="text" class="form-control" name="email" placeholder="email">
           <input type="submit" class="btn btn-primary" value="Potwierdź">
           </form>
   </div>
-  {{#if files}}
+
+
+  {{#if privs}}
     <BR />
     <h4>Pliki do pobrania: </h4> <br />
 
@@ -20,16 +24,18 @@
         <th scope="col">Nazwa pliku</th>
         <th scope="col">Data dodania</th>
         <th scope="col">Rozmiar pliku</th>
+        <th scope="col">Użytkownik</th>
         <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
-      {{#each files}}
+      {{#each privs}}
       <tr>
         <td><a style="color: white;" href="/uploads/public/{{originalname}}">{{originalname}}</a>
         <td>{{formatDate date 'LLL'}}</td>
         <td>{{filesize size}}</td>
-        <td><form action="/files/{{id}}?_method=DELETE" method="post" id="delete-form">
+        <td>{{sharedTo}}</td>
+        <td><form action="/files/privs/{{id}}?_method=DELETE" method="post" id="delete-form">
           <input type="hidden" name="_method" value="DELETE">
           <button type="submit" class="btn btn-delete btn-sm"><i class="fa fa-close">Usuń</i></button>
         </form></td>
@@ -38,7 +44,3 @@
   </table>
   </div>
   {{/if}}
-
-  </div>
-
-</div>

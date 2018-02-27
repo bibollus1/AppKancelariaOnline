@@ -18,41 +18,42 @@ router.get('/', ensureAuthenticated, (req, res) => {
 }
 });
 
+// Private route for admin
+router.get('/private', ensureAuthenticated,(req, res)=>{
+  if ((req.user.permission=='admin')||(req.user.permission=='moderator')){
+  Privs.find({}, function(err, privs) {
+      res.render('files/privaterepo', {privs: privs});
+    });
+} else {
+  res.redirect('/');
+}
+});
+
+// Private route for single user
+router.get('/my', ensureAuthenticated, (req, res)=>{
+  Privs.find({sharedTo: {
+        '$all': req.user.email
+    }}, (err, privs) => {
+    if (privs.length > 0){
+        // print file name and array of users which file is belong to
+        privs.map(file => console.log(privs.fieldname, privs.sharedTo));
+        res.render('files/my', {privs: privs});
+    }else{
+        console.log('error');
+    }
+
+});
+});
+
 // Get public /files
 router.get('/public', ensureAuthenticated, (req, res) => {
   Files.find({}, function(err, files) {
     res.render('files/publicrepo', {files: files});
     console.log(files);
   });
-  // const checkuser = req.user._id;
-  // console.log(checkuser);
-  //
-  // Files.find({sharedTo: {
-  //       '$all': req.user._id
-  //   }}, (err, files) => {
-  //   if (files.length > 0){
-  //       // print file name and array of users which file is belong to
-  //       files.map(file => console.log(file.fieldname, file.sharedTo));
-  //       res.render('files/publicrepo', {files: files});
-  //   }else{
-  //       console.log('error');
-  //   }
 
+  });
 
-// MEGA WAŻNE TRZYMAC DO PRIVA
-// Files.find({sharedTo: {
-//       '$all': req.user._id
-//   }}, (err, files) => {
-//   if (files.length > 0){
-//       // print file name and array of users which file is belong to
-//       files.map(file => console.log(file.fieldname, file.sharedTo));
-//       res.render('files/publicrepo', {files: files});
-//   }else{
-//       console.log('error');
-//   }
-
-
-});
 
 // Create public diskStorage
 var storage = multer.diskStorage({
@@ -103,10 +104,35 @@ router.post('/', uploadPublic.single('file-to-upload'), (req, res) => {
 });
 
 // Post form for private folder
-router.post('/private', uploadPrivate.single('file-to-upload'), (req, res) => {
-  res.redirect('/');
+router.post('/privs', uploadPrivate.single('file-to-upload'), (req, res) => {
+  const newPriv = {
+    fieldname: req.file.fieldname,
+    originalname: req.file.originalname,
+    encoding: req.file.encoding,
+    path: req.file.path,
+    size: req.file.size,
+    sharedTo: req.body.email
+
+  }
+  // Create files
+  new Privs(newPriv)
+    .save()
+    .then(files => {
+      res.redirect('/files/privs');
+    })
+  res.redirect('/files/private');
 });
 
+// Delete private file
+router.delete('/privs/:id', (req, res)=>{
+  Privs.remove({_id: req.params.id})
+  .then(()=>{
+    req.flash('success_msg', 'Usunięto prywatny plik')
+    res.redirect('/files/private')
+  });
+});
+
+// Delete public file
 router.delete('/:id', (req, res)=>{
   Files.remove({_id: req.params.id})
   .then(()=>{
