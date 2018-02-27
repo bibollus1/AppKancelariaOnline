@@ -80,34 +80,34 @@ router.post('/', uploadPublic.single('file-to-upload'), (req, res) => {
 // Private files
 
 
-// Create private diskStorage
-var privStorage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    cb(null, 'public/uploads/private')
-  },
-  filename: function(req, file, cb) {
-    cb(null,file.originalname)
-  }
-});
-
-
-const uploadPrivate = multer({
-  storage: privStorage
-});
-
-
-
-// Post form for private folder
-router.post('/private', uploadPrivate.single('file-to-upload'), (req, res) => {
-  res.redirect('/');
-});
-
-router.delete('/:id', (req, res)=>{
-  Files.remove({_id: req.params.id})
-  .then(()=>{
-    req.flash('success_msg', 'Usunięto plik')
-    res.redirect('/files')
-  });
-});
+// // Create private diskStorage
+// var privStorage = multer.diskStorage({
+//   destination: function(req, file, cb) {
+//     cb(null, 'public/uploads/private')
+//   },
+//   filename: function(req, file, cb) {
+//     cb(null,file.originalname)
+//   }
+// });
+//
+//
+// const uploadPrivate = multer({
+//   storage: privStorage
+// });
+//
+//
+//
+// // Post form for private folder
+// router.post('/private', uploadPrivate.single('file-to-upload'), (req, res) => {
+//   res.redirect('/');
+// });
+//
+// router.delete('/:id', (req, res)=>{
+//   Files.remove({_id: req.params.id})
+//   .then(()=>{
+//     req.flash('success_msg', 'Usunięto plik')
+//     res.redirect('/files')
+//   });
+// });
 
 module.exports = router;
