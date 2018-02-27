@@ -1,4 +1,5 @@
 <div class="container">
+  <div class="col-md-6">
   <div style="position:relative;">
     <form action="/files/privs" enctype="multipart/form-data" method="post">
           <a class='btn btn-primary' href='javascript:;'>
@@ -6,11 +7,13 @@
               <input type="file" name="file-to-upload" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="file_source" size="40"  onchange='$("#upload-file-info").html($(this).val());'>
           </a>
           <span class='label label-info' id="upload-file-info"></span>
-          <label for="email" class="col-sm-2 col-form-label">Email użytkownika</label>
-          <input type="text" class="form-control" name="email" placeholder="email">
+          <br />
+          <label for="email" class="col-sm-2 col-form-label">Email użytkownika: </label>
+          <input type="text" class="form-control" name="email" placeholder="email"><br />
           <input type="submit" class="btn btn-primary" value="Potwierdź">
           </form>
   </div>
+</div>
 
 
   {{#if privs}}

@@ -39,7 +39,8 @@ router.get('/my', ensureAuthenticated, (req, res)=>{
         privs.map(file => console.log(privs.fieldname, privs.sharedTo));
         res.render('files/my', {privs: privs});
     }else{
-        console.log('error');
+      req.flash('error_msg', 'Nie masz jeszcze prywatnych plików!')
+      res.redirect('/dashboard');
     }
 
 });
