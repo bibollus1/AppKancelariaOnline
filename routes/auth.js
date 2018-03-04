@@ -10,7 +10,7 @@ router.get('/google', passport.authenticate('google', {
 
 
 
-
+//  Google authenticate
 router.get('/google/callback',
   passport.authenticate('google', {
     failureRedirect: '/'
@@ -19,6 +19,7 @@ router.get('/google/callback',
     res.redirect('/dashboard');
   });
 
+// Veryfiy user
 router.get('/verify', (req, res) => {
   if (req.user) {
     console.log(req.user);
@@ -27,6 +28,7 @@ router.get('/verify', (req, res) => {
   }
 });
 
+// Logout from google
 router.get('/logout', (req, res) => {
   req.logout();
   req.flash('success_msg', 'Zostałeś wylogowany!');
@@ -36,18 +38,3 @@ router.get('/logout', (req, res) => {
 
 
 module.exports = router;
-
-// router.get('/facebook', passport.authenticate('facebook', {
-//   scope: ['profile', 'email']
-// }));
-// router.get('/facebook',
-//   passport.authenticate('facebook'));
-//
-// router.get('/facebook/callback',
-//   passport.authenticate('facebook', {
-//     failureRedirect: '/login'
-//   }),
-//   function(req, res) {
-//     // Successful authentication, redirect home.
-//     res.redirect('/dashboard');
-//   });

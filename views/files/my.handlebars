@@ -21,7 +21,7 @@
         <td>{{formatDate date 'LLL'}}</td>
         <td>{{filesize size}}</td>
         <td>{{sharedTo}}</td>
-        <td><form action="/privs/{{id}}?_method=DELETE" method="post" id="delete-form">
+        <td><form action="/files/privs/{{id}}?_method=DELETE" method="post" id="delete-form">
           <input type="hidden" name="_method" value="DELETE">
           <button type="submit" class="btn btn-delete btn-sm"><i class="fa fa-close">Usuń</i></button>
         </form></td>

@@ -50,6 +50,7 @@ router.post('/register', (req,res)=>{
   }
 
   if (errors.length>0){
+    console.log(errors);
     res.render('users/register',{
       // to not reenter form if fails, it will not clean web storage
       errors: errors,
@@ -147,36 +148,3 @@ router.put('/mantain/:id',(req,res)=>{
 //   res.redirect('/users/login');
 // });
 module.exports = router;
-
-
-// {{#if files}}
-//
-//   <h4>Pliki do pobrania: </h4> <br />
-//
-// <table class="table">
-//   <thead>
-//
-//     <tr>
-//       <th scope="col">Nazwa pliku</th>
-//       <th scope="col">Data dodania</th>
-//       <th scope="col">Rozmiar pliku</th>
-//       <th scope="col"></th>
-//     </tr>
-//   </thead>
-//   <tbody>
-//     {{#each files}}
-//     <tr>
-//       <td><a style="color: white;" href="/uploads/public/{{originalname}}">{{originalname}}</a>
-//       <td>{{formatDate date 'LLL'}}</td>
-//       <td>{{filesize size}}</td>
-//       <td><form action="/files/{{id}}?_method=DELETE" method="post" id="delete-form">
-//         <input type="hidden" name="_method" value="DELETE">
-//         <button type="submit" class="btn btn-delete btn-sm"><i class="fa fa-close">Usuń</i></button>
-//       </form></td>
-//     {{/each}}
-//   </tbody>
-// </table>
-// </div>
-// {{/if}}
-//
-// </div>
