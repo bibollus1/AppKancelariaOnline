@@ -45,11 +45,9 @@ module.exports = function(passport) {
       callbackURL: '/auth/google/callback',
       proxy: true // For heroku bug
     }, (accessToken, refreshToken, profile, done) => {
-      // console.log(accessToken);
-      // console.log(profile);
 
       const image = profile.photos[0].value.substring(0,
-        profile.photos[0].value.indexOf('?'));
+      profile.photos[0].value.indexOf('?'));
       // console.log(image);
 
       const newUser = {
@@ -65,11 +63,9 @@ module.exports = function(passport) {
       }).then(user => {
         if (user) {
           // Return user
-          // If there is user then return it
           done(null, user);
         } else {
           // Create user
-          // If there is no user, create it and then return
           new User(newUser)
             .save()
             .then(user => done(null, user))
