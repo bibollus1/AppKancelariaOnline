@@ -16,11 +16,6 @@ textarea {
   width: 100%;
 }
 
-#submit-form {
-  position: fixed;
-  margin-right: 100000px;
-}
-
 card-body {
   color: black;
 }
