@@ -1,79 +1,5 @@
-#hide-me{
-  display: none;
-}
-
-.admin-p{
-  margin-bottom: 5px;
-}
-
-#card-update {
-  height: auto;
-}
-
-
-
-textarea {
-  box-sizing: border-box;
-  resize: none;
-  width: 100%;
-}
-
-card-body {
-  color: black;
-}
-
-body {
-  background-color: #222222;
-  color: white;
-  font-family: "Times New Roman";
-  height: auto;
-}
-
-a {
-  font-family: "Times New Roman";
-  color: #6c767d;
-}
-
-a:hover {
-  color: white;
-}
-
-.btn-delete {
-  display: inline-block;
-  background-color: #fe5c5c;
-  background-border: #fe5c5c;
-  width: 72px;
-}
-
-.btn-delete:hover {
-  background-color: #e89797;
-}
-
-#delete-form {
-  display: inline;
-}
-
-.main {
-  position: relative;
-  height: 100%;
-  padding: 40px;
-  margin-bottom: 200px;
-}
-
-.body-handler {
-  padding: 20px;
-}
-
-.body-text {
-  font-family: "Times New Roman";
-  color: #DCDCDC;
-  text-align: center;
-  padding-top: 100px;
-}
-
-.test-text {
-  font-family: "Times New Roman";
-  color: #DCDCDC;
+.text-primary {
+    color: #12bbad !important;
 }
 
 .messages {
@@ -83,33 +9,54 @@ a:hover {
   padding: 10px;
 }
 
-.login {
-  color: black;
+.bg-primary {
+  background-color: #12bbad !important;
 }
 
-.register {
-  color: black;
+.navbar {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.5rem;
 }
 
+.navbar>.container, .navbar>.container-fluid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 60px;
+}
 .footer {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 120px;
-  padding-top: 15px;
-  line-height: 20px;
-  /* Vertically center the text there */
-  background-color: #343a41;
+  height: 60px;
+  line-height: 60px;
+  background-color: #12bbad;
+}
+.text-muted {
+    color: white !important;
 }
 
-.navbar-fixed-top {
-  position: fixed;
-  right: 0;
-  left: 0;
-  z-index: 1030;
+body > .container {
+  padding: 60px 15px 0;
 }
 
-.footer-copyright {
-  padding-left: 80px;
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+code {
+  font-size: 80%;
 }
