@@ -4,7 +4,7 @@
 
     <h4>Pliki do pobrania: </h4> <br />
 
-  <table class="table">
+  <table class="table table-striped">
     <thead>
 
       <tr>
@@ -16,7 +16,7 @@
     <tbody>
       {{#each files}}
       <tr>
-        <td><a style="color: white;" href="/uploads/public/{{originalname}}">{{originalname}}</a>
+        <td><a style="color: black;" href="/uploads/public/{{originalname}}">{{originalname}}</a>
         <td>{{formatDate date 'LLL'}}</td>
         <td>{{filesize size}}</td>
       {{/each}}

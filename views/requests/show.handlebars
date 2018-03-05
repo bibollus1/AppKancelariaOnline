@@ -1,74 +1,75 @@
-<div class="container">
-      <button onClick="goBack()" type="button" class="btn btn-primary" style="float: right;" >Wstecz</button>
-  <div class="row">
+<div class="py-5 bg-primary ">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="card">
+                <div class="card-header"><h5>{{request.title}}</h5></div>
+                <div class="card-body">
+                  <p class="card-text">{{stripTags request.body}}</p>
+                </div>
+              </div>
+            </br>
+              {{#each request.updates}}
 
-  <div class="col-md-8">
-    <div class="card-request">
-      <div class="card request" style="color: black; height: 300px;">
-        <div class="card-header">
-          <h1>{{request.title}}</h1>
-        </div>
-          <p class="card-text">{{stripTags request.body}}</p>
-          <p class="card-text"></p>
-      </div>
-    </div>
-    <br />
-    <!-- Tu wstawić instrukcje dla Admina, jeśli admin to zrób to, jeśli nie to else #if i /if -->
+              <div class="card">
+                <div class="card-content">
+                  <h4 style="color:black;">{{updateFirstName}} {{updateLastName}}</h4>
+                  <h6 style="color:black;">{{formatDate updateDate 'LLL'}}</h6>
+                  <br />
 
-      {{#each request.updates}}
-
-      <div class="card">
-        <div class="card-content">
-          <h4 style="color:black;">{{updateFirstName}} {{updateLastName}}</h4>
-          <hr />
-          <h6 style="color:black;">{{formatDate updateDate 'LLL'}}</h3>
-          <h5 style="color:black;">{{updateBody}}</h5>
+                  <h5 style="color:black;">{{updateBody}}</h5>
 
 
-        </div>
-      </div>
-        <br>
-      {{/each}}
+                </div>
+              </div>
+                <br>
+              {{/each}}
 
-      <div class="card" id="card-update">
-          <span style="color: black;"> Dodaj aktualizacje</span>
-          <form method="post" action="/requests/update/{{request.id}}">
-            <div class="input-field">
-                <textarea data-autoresize  name="updateBody"></textarea>
-                <input type="submit" value="Wyślij" class="btn btn-success" />
-            </div>
-          </form>
-      </div>
-  </div>
-  <div class="col-md-4">
-    <div class="card request" style="color: black; height: 300px;">
-        <h4 class="card-title">{{request.category}}</h4>
-        <p class="card-text"> {{request.firstName}} {{request.lastName}}</p>
-        <p class="card-text"> {{request.email}}</p>
-        <p class="card-text"> {{formatDate request.date 'LLL'}}</p>
+              <div class="card" id="card-update">
+                  <span style="color: black;"> Dodaj aktualizacje</span>
+                  <form method="post" action="/requests/update/{{request.id}}">
+                    <div class="input-field">
+                        <textarea data-autoresize style="width: 100%" name="updateBody"></textarea>
 
-        <form action="/requests/{{request.id}}?_method=POST" method="post">
-          <input type="hidden" name="_method" value="POST">
-
-          <div class="form-group row">
-            <div class="col-sm-10">
-              <select multiple class="form-control" name="status" required>
-                <option>nowe</option>
-                <option>w realizacji</option>
-                <option>oczekiwanie na odpowiedź</option>
-                <option>odpowiedź użytkownika</option>
-                <option>zakończone</option>
-
-              </select>
-            </div>
-
+                    </div>
+                    <input class="btn btn-success" type="submit" value="Wyślij"  />
+                  </form>
+              </div>
           </div>
-            <button type="submit" class="btn btn-success btn-sm" value="Save" id="edit-form-button"> Zmień status</button>
-        </form>
+          <div class="col-md-4">
+            <div class="card request" style="color: black;">
+                <h4 class="card-title">{{request.category}}</h4>
+                <p class="card-text"> {{request.firstName}} {{request.lastName}}</p>
+                <p class="card-text"> {{request.email}}</p>
+                <p class="card-text"> {{formatDate request.date 'LLL'}}</p>
+
+                <form action="/requests/{{request.id}}?_method=POST" method="post">
+                  <input type="hidden" name="_method" value="POST">
+
+                  <div class="form-group row">
+                    <div class="col-sm-10">
+                      <select multiple class="form-control" name="status" required>
+                        <option>nowe</option>
+                        <option>w realizacji</option>
+                        <option>oczekiwanie na odpowiedź</option>
+                        <option>odpowiedź użytkownika</option>
+                        <option>zakończone</option>
+
+                      </select>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-sm" value="Save" id="edit-form-button"> Zmień status</button>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-</div>
-
-<!-- Wielka próba zmiany statusu.... -->

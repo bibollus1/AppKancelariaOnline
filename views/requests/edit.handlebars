@@ -1,34 +1,38 @@
-<div class="container">
-      <button onClick="goBack()" type="button" class="btn btn-primary" style="float: right;" >Wstecz</button>
-  <h3 style="text-align: center;">Edytuj zgłoszenie</h3><br />
-  <div class="col-sm-8 mx-auto">
-    <form action="/requests/{{request.id}}?_method=PUT" method="post">
-      <input type="hidden" name="_method" value="PUT">
-      <div class="form-group row">
-        <label for="title" class="col-sm-2 col-form-label">Temat</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" name="title" value="{{request.title}}" placeholder="Wprowadź temat swojego zgłoszenia...">
-        </div>
+<div class="py-5 text-white bg-primary text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Edytuj zgłoszenie</h1>
+        <p class="lead mb-4">Edytuj dane w poniższych polach aby zmienić zawartość zgłoszenia</p>
+        <form action="/requests/{{request.id}}?_method=PUT" method="post">
+          <input type="hidden" name="_method" value="PUT">
+          <div class="form-group row">
+            <label for="title" class="col-sm-2 col-form-label">Temat</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="title" value="{{request.title}}" placeholder="Wprowadź temat swojego zgłoszenia...">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="category" class="col-sm-2 col-form-label">Kategoria</label>
+            <div class="col-sm-10">
+              <select multiple class="form-control" name="category" required>
+                <option>Porada prawna</option>
+                <option>Opinia prawna</option>
+                <option>Ekspertyza prawna</option>
+                <option>Projekt aktu prawnego</option>
+                <option>Zastąpienie przy negocjacjach</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="request" class="col-sm-2 col-form-label">Treść zgłoszenia</label>
+            <div class="col-sm-10">
+              <textarea class="form-control" rows="5" name="body" placeholder="Tutaj wprowadź treść zgłoszenia...">{{request.body}}</textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-secondary btn-lg" value="Save" id="submit-form">Wyślij</button>
+        </form>
       </div>
-      <div class="form-group row">
-        <label for="category" class="col-sm-2 col-form-label">Kategoria</label>
-        <div class="col-sm-10">
-          <select multiple class="form-control" name="category" required>
-            <option>Porada prawna</option>
-            <option>Opinia prawna</option>
-            <option>Ekspertyza prawna</option>
-            <option>Projekt aktu prawnego</option>
-            <option>Zastąpienie przy negocjacjach</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="request" class="col-sm-2 col-form-label">Treść zgłoszenia</label>
-        <div class="col-sm-10">
-          <textarea class="form-control" rows="5" name="body" placeholder="Tutaj wprowadź treść zgłoszenia...">{{request.body}}</textarea>
-        </div>
-      </div>
-      <button type="submit" class="btn btn-success btn-lg" value="Save" id="submit-form">Wyślij</button>
-    </form>
+    </div>
   </div>
 </div>

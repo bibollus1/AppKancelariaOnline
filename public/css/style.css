@@ -1,3 +1,16 @@
+#edit-form-button{
+  margin-top: 12px;
+  margin-left: 18px;
+}
+
+#button-submit {
+  position: absolute;
+      top: 99%;
+      left: 50%;
+}
+
+
+
 .btn-delete {
   color: white;
   display: inline-block;
@@ -49,9 +62,10 @@
 html {
   position: relative;
   min-height: 100%;
-}
+  }
 body {
   margin-bottom: 60px;
+  background-color: #f9f9f9;
 }
 .footer {
   position: absolute;
