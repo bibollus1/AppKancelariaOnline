@@ -1,50 +1,67 @@
-<div class="container">
-  <h1>Witaj {{user.firstName}}</h1><br />
 
-  <h4>Twoje zgłoszenia: </h4> <br />
+
+
+  <div class="py-5 text-center bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1>Witaj {{user.firstName}}</h1><br />
+            <h1>Testimonials columns</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 p-4">
+            <a href="/requests/add"><img class="img-fluid rounded-circle" src="https://thumbs.dreamstime.com/b/businessman-signing-document-cloceup-hands-contract-32725640.jpg"></a>
+            <a href="/requests/add"><b><h5>Utwórz zgłoszenie</h5></b></a>
+            <p class="my-4"><i>Kliknij tutaj aby utworzyć nowe zgłoszenie, wewnątrz wymagane jest wypełnienie wszystkich pól aby pomyślnie je zapisać</i></p>
+          </div>
+          <div class="col-md-4 p-4">
+            <a href="/files/public"><img class="img-fluid rounded-circle" src="https://media.istockphoto.com/photos/books-picture-id506755198?k=6&m=506755198&s=612x612&w=0&h=pIdFXwiGNwn-KcL_vc5N_7w3DSwH48q2oJmHY8ny_VY="></a>
+            <a href="/files/public"><b><h5>Repozytorium</h5></b></a>
+            <p class="my-4"><i>Kliknij tutaj aby przeglądać dostępne pliki i dokumenty, znajdziesz tutaj ogólnodostępne materiały udostępnione przez naszą kancelarię</i></p>
+          </div>
+          <div class="col-md-4 p-4">
+            <a href="/files/my"><img class="img-fluid rounded-circle" src="https://media.gettyimages.com/photos/blank-files-picture-id183040510?b=1&k=6&m=183040510&s=612x612&w=0&h=v6CvCXPm4pLOH-saB5TaiNbekxlUm6OYpGnoixYj9Xw="></a>
+            <a href="/files/my"><b><h5>Pliki prywatne</h5></b></a>
+            <p class="my-4"><i>Kliknij tutaj aby przeglądać swoje pliki prywatne, dostęp do nich masz tylko Ty oraz administratorzy strony</i></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
   {{#if requests}}
-    <a class="btn btn-success btn-sm" href="/files/public"><i class="fa fa-download"></i> Repozytorium</a>   <br /><br />
-    <a class="btn btn-success btn-sm" href="/files/my"><i class="fa fa-download"></i> Pliki osobiste</a>   <br /><br />
-    <a class="btn btn-success btn-sm"href="/requests/add"><i class="fa fa-folder-open"></i> Nowe zgłoszenie</a>   <br /><br />
-    <table class="table">
-      <thead>
-
-        <tr>
-          <th scope="col">Tytuł</th>
-          <th scope="col">Kategoria</th>
-          <th scope="col">Data</th>
-          <th scope="col">Status</th>
-          <th scope="col"></th>
-
-        </tr>
-      </thead>
-      <tbody>
+    <h4>Twoje zgłoszenia: </h4>
         {{#each requests}}
-          <tr>
-            <td><a style="color: white;" href="/requests/show/{{id}}"><p>{{title}}</p></a></td>
-            <td>{{category}}</td>
-            <td>{{formatDate date 'LLL'}}</td>
-            <td>{{status}}</td>
-            <td>
-              <a class="btn btn-success btn-sm" href="/requests/show/{{id}}"><i class="fa fa-folder-open"></i> Otwórz</a>
-              <a class="btn btn-info btn-sm" href="/requests/edit/{{id}}"><i class="fa fa-pencil"></i> Edytuj</a>
-              <form action="/requests/{{id}}?_method=DELETE" method="post" id="delete-form">
-                <input type="hidden" name="_method" value="DELETE">
-                <button type="submit" class="btn btn-delete btn-sm"><i class="fa fa-close"> Usuń</i></button>
-              </form>
-            </td>
-          </tr>
+        <div class="py-5">
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header"> <a href="/requests/show/{{id}}" style="color:black">{{title}}</a><p style="text-align: right;">{{formatDate date 'LLL'}}</p></div>
+                  <div class="card-body">
+                    <h5 class="card-title">{{category}}</h5>
+                    <h6 class="card-title">{{status}}</h6>
+                    <p class="card-text">{{stripTags body}}</p>
+                  </div>
+                </div>
+                <div class="buttons">
+                  <a class="btn btn-success btn-sm" href="/requests/show/{{id}}"><i class="fa fa-folder-open"></i> Otwórz</a>
+                  <a class="btn btn-info btn-sm" href="/requests/edit/{{id}}"><i class="fa fa-pencil"></i> Edytuj</a>
+                  <form action="/requests/{{id}}?_method=DELETE" method="post" id="delete-form">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-delete btn-sm" ><i class="fa fa-close"> Usuń</i></button>
+                  </form>
+                </div>
+
+              </div>
+
+          </div>
+        </div>
         {{/each}}
       </tbody>
     </table>
-  {{else}}
-    <p>Nie utworzyłeś jeszcze żadnych zgłoszeń,</p>
-    <p>Kliknij przycisk poniżej aby utworzyć nowe.</p>
-      <a class="btn btn-success btn-sm"href="/requests/add"><i class="fa fa-folder-open"></i> Nowe zgłoszenie</a><br />
-      <p>lub obejrzyj i pobierz dostępne pliki</p>
-      <a class="btn btn-success btn-sm" href="/files/public"><i class="fa fa-download"></i> Do pobrania</a>   <br /><br />
+    {{else}}
+    <p class="my-4"><i>Nie masz jeszcze żadnych zgłoszeń, kliknij powyżej <b>utwórz zgłoszenie</b> aby utworzyć nowe lub <b>repozytorium</b> aby przeglądać publiczne pliki. </i></p>
+    <p class="my-4"><i><b>Pliki prywatne</b> będą dostępne jak tylko uzyskasz do nich dostęp</i></p>
   {{/if}}
-
-
-</div>

@@ -1,3 +1,20 @@
+.btn-delete {
+  color: white;
+  display: inline-block;
+  background-color: #fe5c5c;
+  background-border: #fe5c5c;
+  width: 72px;
+}
+
+.btn-delete:hover {
+  background-color: #e89797;
+}
+
+#delete-form {
+  display: inline;
+}
+
+
 .text-primary {
     color: #12bbad !important;
 }
