@@ -34,8 +34,6 @@ router.get('/show/:id', ensureAuthenticated, (req, res)=>{
   Request.findOne({
     _id: req.params.id
   })
-  .populate('user')
-  .populate('comments.commentUser')
   .then(request => {
     res.render('requests/show', {
       request: request
