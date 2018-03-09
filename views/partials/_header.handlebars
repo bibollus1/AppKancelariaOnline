@@ -4,12 +4,15 @@
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
     <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
       <ul class="navbar-nav">
+
         {{#if user}}
 
           <li class="nav-item">
             <a href="/auth/logout" class="nav-link"><i class="fa fa-sign-out"> Wyloguj {{user.email}}</i> </a>
           </li>
+
         {{else}}
+
           <li class="nav-item">
             <a href="/users/login" class="nav-link"><i class="fa fa-user"> Zaloguj</i> </a>
           </li>
@@ -17,7 +20,9 @@
             <a href="/users/register" class="nav-link"><i class="fa fa-user-plus"> Zarejestruj</i></a>
           </li>
           <a class="btn btn-danger" href="/auth/google"><i class="fa fa-google left"></i> Google!</a>
+
         {{/if}}
+
       </ul>
     </div>
   </div>

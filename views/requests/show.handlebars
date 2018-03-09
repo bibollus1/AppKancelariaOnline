@@ -19,10 +19,7 @@
                   <h4 style="color:black;">{{updateFirstName}} {{updateLastName}}</h4>
                   <h6 style="color:black;">{{formatDate updateDate 'LLL'}}</h6>
                   <br />
-
                   <h5 style="color:black;">{{updateBody}}</h5>
-
-
                 </div>
               </div>
                 <br>
@@ -32,7 +29,7 @@
                   <span style="color: black;"> Dodaj aktualizacje</span>
                   <form method="post" action="/requests/update/{{request.id}}">
                     <div class="input-field">
-                        <textarea data-autoresize style="width: 100%" name="updateBody"></textarea>
+                        <textarea data-autoresize style="width: 100%" name="updateBody" required></textarea>
 
                     </div>
                     <input class="btn btn-success" type="submit" value="Wyślij"  />

@@ -1,59 +1,73 @@
 const express = require('express');
+const fs = require('fs');
+const path = require('path');
 const mongoose = require('mongoose');
 const multer = require('multer');
 const _ = require('lodash');
 const Files = mongoose.model('files');
 const Privs = mongoose.model('privs');
-const {ensureAuthenticated} = require('../helpers/auth');
+const {
+  ensureAuthenticated
+} = require('../helpers/auth');
 const router = express.Router();
 
 // Get /files
 router.get('/', ensureAuthenticated, (req, res) => {
-  if ((req.user.permission=='admin')||(req.user.permission=='moderator')){
-  Files.find({}, function(err, files) {
-    res.render('files/repo', {files: files});
-  });
-}else {
-  res.redirect('/');
-}
+  if ((req.user.permission == 'admin') || (req.user.permission == 'moderator')) {
+    Files.find({}, function(err, files) {
+      res.render('files/repo', {
+        files: files
+      });
+    });
+  } else {
+    res.redirect('/');
+  }
 });
 
 // Private route for admin
-router.get('/private', ensureAuthenticated,(req, res)=>{
-  if ((req.user.permission=='admin')||(req.user.permission=='moderator')){
-  Privs.find({}, function(err, privs) {
-      res.render('files/privaterepo', {privs: privs});
+router.get('/private', ensureAuthenticated, (req, res) => {
+  if ((req.user.permission == 'admin') || (req.user.permission == 'moderator')) {
+    Privs.find({}, function(err, privs) {
+      res.render('files/privaterepo', {
+        privs: privs
+      });
     });
-} else {
-  res.redirect('/');
-}
+  } else {
+    res.redirect('/');
+  }
 });
 
 // Private route for single user
-router.get('/my', ensureAuthenticated, (req, res)=>{
-  Privs.find({sharedTo: {
-        '$all': req.user.email
-    }}, (err, privs) => {
-    if (privs.length > 0){
-        // print file name and array of users which file is belong to
-        privs.map(file => console.log(privs.fieldname, privs.sharedTo));
-        res.render('files/my', {privs: privs});
-    }else{
+router.get('/my', ensureAuthenticated, (req, res) => {
+  Privs.find({
+    sharedTo: {
+      '$all': req.user.email
+    }
+  }, (err, privs) => {
+    if (privs.length > 0) {
+      // print file name and array of users which file is belong to
+      privs.map(file => console.log(privs.fieldname, privs.sharedTo));
+      res.render('files/my', {
+        privs: privs
+      });
+    } else {
       req.flash('error_msg', 'Nie masz jeszcze prywatnych plików!')
       res.redirect('/dashboard');
     }
 
-});
+  });
 });
 
 // Get public /files
 router.get('/public', ensureAuthenticated, (req, res) => {
   Files.find({}, function(err, files) {
-    res.render('files/publicrepo', {files: files});
+    res.render('files/publicrepo', {
+      files: files
+    });
     console.log(files);
   });
 
-  });
+});
 
 
 // Create public diskStorage
@@ -62,7 +76,7 @@ var storage = multer.diskStorage({
     cb(null, 'public/uploads/public')
   },
   filename: function(req, file, cb) {
-    cb(null,file.originalname)
+    cb(null, file.originalname)
   }
 });
 
@@ -72,7 +86,7 @@ var privStorage = multer.diskStorage({
     cb(null, 'public/uploads/private')
   },
   filename: function(req, file, cb) {
-    cb(null,file.originalname)
+    cb(null, file.originalname)
   }
 });
 
@@ -87,6 +101,7 @@ const uploadPrivate = multer({
 // Post form for public folder
 router.post('/', uploadPublic.single('file-to-upload'), (req, res) => {
   const newFile = {
+
     fieldname: req.file.fieldname,
     originalname: req.file.originalname,
     encoding: req.file.encoding,
@@ -125,21 +140,52 @@ router.post('/privs', uploadPrivate.single('file-to-upload'), (req, res) => {
 });
 
 // Delete private file
-router.delete('/privs/:id', (req, res)=>{
-  Privs.remove({_id: req.params.id})
-  .then(()=>{
-    req.flash('success_msg', 'Usunięto prywatny plik')
-    res.redirect('/files/private')
-  });
+router.delete('/privs/:id', (req, res) => {
+  Privs.remove({
+      _id: req.params.id
+    })
+    .then(() => {
+      req.flash('success_msg', 'Usunięto prywatny plik')
+      res.redirect('/files/private')
+    });
 });
 
-// Delete public file
-router.delete('/:id', (req, res)=>{
-  Files.remove({_id: req.params.id})
-  .then(()=>{
-    req.flash('success_msg', 'Usunięto plik')
-    res.redirect('/files')
-  });
+router.use(express.static(path.join(__dirname, 'public')));
+
+
+// Edit request form
+router.get('/edit/:id', ensureAuthenticated, (req, res) => {
+
+  Request.findOne({
+      _id: req.params.id
+    })
+    .then(request => {
+      res.render('requests/edit', {
+        request: request
+      })
+    });
 });
+
+
+router.delete('/:id', (req, res) => {
+  Files.findOne({
+    _id: req.params.id
+  }, (err, file) => {
+    fs.unlink('public/uploads/public/' + file.originalname, (err) => {
+      if (err) throw err;
+      console.log('Delete file ' + req.params.id);
+
+      Files.remove({
+          _id: req.params.id
+        })
+        .then(() => {
+          //  console.log(req.params.id);
+          req.flash('success_msg', 'Usunięto plik')
+          res.redirect('/files')
+        });
+    });
+  })
+});
+
 
 module.exports = router;
