@@ -141,32 +141,28 @@ router.post('/privs', uploadPrivate.single('file-to-upload'), (req, res) => {
 
 // Delete private file
 router.delete('/privs/:id', (req, res) => {
-  Privs.remove({
-      _id: req.params.id
-    })
-    .then(() => {
-      req.flash('success_msg', 'Usunięto prywatny plik')
-      res.redirect('/files/private')
+  Privs.findOne({
+    _id: req.params.id
+  }, (err, file) => {
+    fs.unlink('public/uploads/private/' + file.originalname, (err) => {
+      if (err) throw err;
+
+      Privs.remove({
+          _id: req.params.id
+        })
+        .then(() => {
+          //  console.log(req.params.id);
+          req.flash('success_msg', 'Usunięto plik')
+          res.redirect('/files/private')
+        });
     });
+  })
 });
+
 
 router.use(express.static(path.join(__dirname, 'public')));
 
-
-// Edit request form
-router.get('/edit/:id', ensureAuthenticated, (req, res) => {
-
-  Request.findOne({
-      _id: req.params.id
-    })
-    .then(request => {
-      res.render('requests/edit', {
-        request: request
-      })
-    });
-});
-
-
+// Delete public file
 router.delete('/:id', (req, res) => {
   Files.findOne({
     _id: req.params.id

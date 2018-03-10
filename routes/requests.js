@@ -71,7 +71,6 @@ router.put('/:id',(req,res)=>{
   .then(request => {
     request.title = req.body.title,
     request.body = req.body.body,
-    request.status = req.body.status,
     request.category = req.body.category
 
     request.save()
