@@ -20,8 +20,7 @@ const FilesSchema = new Schema({
   },
   size: {
     type: String
-  },
-  sharedTo:[String]
+  }
 
 });
 

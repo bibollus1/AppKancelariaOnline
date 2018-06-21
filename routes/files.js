@@ -45,8 +45,6 @@ router.get('/my', ensureAuthenticated, (req, res) => {
     }
   }, (err, privs) => {
     if (privs.length > 0) {
-      // print file name and array of users which file is belong to
-      privs.map(file => console.log(privs.fieldname, privs.sharedTo));
       res.render('files/my', {
         privs: privs
       });
@@ -64,7 +62,6 @@ router.get('/public', ensureAuthenticated, (req, res) => {
     res.render('files/publicrepo', {
       files: files
     });
-    console.log(files);
   });
 
 });
@@ -98,6 +95,7 @@ const uploadPrivate = multer({
   storage: privStorage
 });
 
+
 // Post form for public folder
 router.post('/', uploadPublic.single('file-to-upload'), (req, res) => {
   const newFile = {
@@ -106,8 +104,7 @@ router.post('/', uploadPublic.single('file-to-upload'), (req, res) => {
     originalname: req.file.originalname,
     encoding: req.file.encoding,
     path: req.file.path,
-    size: req.file.size,
-    sharedTo: req.user._id
+    size: req.file.size
 
   }
   // Create files
@@ -139,6 +136,9 @@ router.post('/privs', uploadPrivate.single('file-to-upload'), (req, res) => {
   res.redirect('/files/private');
 });
 
+
+router.use(express.static(path.join(__dirname, 'public')));
+
 // Delete private file
 router.delete('/privs/:id', (req, res) => {
   Privs.findOne({
@@ -151,7 +151,6 @@ router.delete('/privs/:id', (req, res) => {
           _id: req.params.id
         })
         .then(() => {
-          //  console.log(req.params.id);
           req.flash('success_msg', 'Usunięto plik')
           res.redirect('/files/private')
         });
@@ -160,7 +159,7 @@ router.delete('/privs/:id', (req, res) => {
 });
 
 
-router.use(express.static(path.join(__dirname, 'public')));
+
 
 // Delete public file
 router.delete('/:id', (req, res) => {
